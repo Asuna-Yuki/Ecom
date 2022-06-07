@@ -23,7 +23,6 @@ router.post(
 
     try {
       const user = await User.findById(req.user.id).select("-password");
-      console.log(user);
 
       const newReview = new Review({
         user: req.user.id,
