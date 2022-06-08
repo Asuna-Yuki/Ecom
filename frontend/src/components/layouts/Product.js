@@ -1,20 +1,21 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   return (
-    <div class='main'>
-      <a href='index.html' target='_self'>
-        <button class='back-btn btn'>Go Back</button>
-      </a>
+    <div className='main'>
+      <Link to='/'>
+        <button className='back-btn btn'>Go Back</button>
+      </Link>
 
-      <div class='row'>
-        <div class='product-column-1'>
-          <div class='product-page-img'>
-            <img class='image' src='images/Miku.jpg' alt=''></img>
+      <div className='row'>
+        <div className='product-column-1'>
+          <div className='product-page-img'>
+            <img className='image' src='images/Miku.jpg' alt=''></img>
           </div>
         </div>
-        <div class='product-column-2'>
-          <div class='product-des'>
+        <div className='product-column-2'>
+          <div className='product-des'>
             <h1>Product Name</h1>
             <hr></hr>
             <p>Price</p>
@@ -27,53 +28,53 @@ const Product = () => {
             </p>
           </div>
         </div>
-        <div class='product-column-3'>
-          <div class='product-detail'>
-            <div class='product-detail-item'>
-              <div class='row'>
+        <div className='product-column-3'>
+          <div className='product-detail'>
+            <div className='product-detail-item'>
+              <div className='row'>
                 <p>Price:</p>
                 <p>99$</p>
               </div>
             </div>
-            <div class='product-detail-item'>
-              <div class='row'>
+            <div className='product-detail-item'>
+              <div className='row'>
                 <p>Status:</p>
                 <p>-----</p>
               </div>
             </div>
-            <div class='product-detail-item'>
-              <div class='row'>
+            <div className='product-detail-item'>
+              <div className='row'>
                 <p>Quantity:</p>
                 <p>
-                  <input type='number' class='quantity-input'></input>
+                  <input type='number' className='quantity-input'></input>
                 </p>
               </div>
             </div>
-            <div class='product-detail-item'>
+            <div className='product-detail-item'>
               <a href=''>
-                <button class='add-to-cart btn'>Add to Cart</button>
+                <button className='add-to-cart btn'>Add to Cart</button>
               </a>
             </div>
           </div>
         </div>
       </div>
-      <div class='review-container'>
+      <div className='review-container'>
         <h2>REVIEWS</h2>
-        <div class='review'>
+        <div className='review'>
           <p>Name</p>
           <p>date - 32/13/4020</p>
           <p>fiwehf hfeuiwhf ohfweohf oiahf oewih</p>
           <br></br>
           <hr></hr>
         </div>
-        <div class='review'>
+        <div className='review'>
           <p>Name</p>
           <p>date - 32/13/4020</p>
           <p>fiwehf hfeuiwhf ohfweohf oiahf oewih</p>
           <br></br>
           <hr></hr>
         </div>
-        <div class='review'>
+        <div className='review'>
           <p>Name</p>
           <p>date - 32/13/4020</p>
           <p>fiwehf hfeuiwhf ohfweohf oiahf oewih</p>
