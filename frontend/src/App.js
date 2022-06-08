@@ -12,6 +12,7 @@ import Footer from "./components/layouts/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Product from "./components/layouts/Product";
+import Cart from "./components/layouts/Cart";
 
 const App = () => {
   return (
@@ -19,9 +20,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/register' element={<Register />} />
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/product' element={<Product />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/product' element={<Product />} />
+        <Route path='/cart' element={<Cart />} />
       </Routes>
       <Footer />
     </Router>
