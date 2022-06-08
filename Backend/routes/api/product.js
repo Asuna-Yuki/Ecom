@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 // Models
 const Product = require("../../models/Product");
+const Rreview = require("../../models/Review");
 
 // @Route  GET api/product
 // @desc   getting all products
@@ -53,6 +54,7 @@ router.post("/", async (req, res) => {
       image: image,
       price: price,
       description: description,
+      review: [],
     });
 
     const product = await newProduct.save();
