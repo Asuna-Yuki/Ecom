@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <header>
-      <a id='logo' href='index.html'>
+      <Link id='logo' to='/'>
         PROLOGO
-      </a>
+      </Link>
 
       <input
         type='text'
@@ -20,27 +21,19 @@ const Navbar = () => {
       <nav>
         <ul className='navlinks'>
           <li>
-            <a href='cart.html' target='_self'>
-              Cart
-            </a>
+            <Link to='/cart'>Cart</Link>
           </li>
           <li>
-            <a href='login.html' target='_self'>
-              Sign in
-            </a>
+            <Link to='/login'>Sign in</Link>
           </li>
         </ul>
         <div className='navlinks-drop-down noActionDiv hidden' id='noActionDiv'>
           <div className='drop-down hidden noActionDiv' id='noActionDiv'>
             <div className='drop-down-menu' id='noActionDiv'>
-              <a href='cart.html' target='_self'>
-                Cart
-              </a>
+              <Link to='/cart'>Cart</Link>
             </div>
             <div className='drop-down-menu' id='noActionDiv'>
-              <a href='login.html' target='_self'>
-                Sign in
-              </a>
+              <Link to='/login'>Sign in</Link>
             </div>
           </div>
         </div>

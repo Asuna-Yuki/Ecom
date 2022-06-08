@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
       <div className='row'>
         <div className='column'>
           <div className='column-content'>
-            <a href='product.html'>
+            <Link to='/product'>
               <div className='product-image'>
                 <img className='image' src='images/Miku.jpg' alt=''></img>
               </div>
@@ -21,7 +22,7 @@ const Home = () => {
                 <h5>Product Name</h5>
                 <h2>PRICE</h2>
               </div>
-            </a>
+            </Link>
           </div>
         </div>
         <div className='column'>
