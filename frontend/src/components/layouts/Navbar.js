@@ -14,9 +14,9 @@ const Navbar = () => {
         className='search-input'
       ></input>
 
-      <a className='cta' href='#' target='_self'>
+      <Link className='cta' to='/search'>
         <button className='search-btn btn'>Search</button>
-      </a>
+      </Link>
 
       <nav>
         <ul className='navlinks'>
