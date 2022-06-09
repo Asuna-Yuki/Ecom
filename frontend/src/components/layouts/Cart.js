@@ -1,9 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   return (
     <div className='main'>
+      <Link to='/'>
+        <button className='back-btn btn'>Go Back</button>
+      </Link>
       <h1>shoping cart</h1>
       <div className='cart'>
         <div className='cart-card-img'>
