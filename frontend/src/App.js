@@ -13,20 +13,25 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Product from "./components/layouts/Product";
 import Cart from "./components/layouts/Cart";
+// Redux
+import { Provider } from "react-redux";
+import store from "./store";
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/product' element={<Product />} />
-        <Route path='/cart' element={<Cart />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/product' element={<Product />} />
+          <Route path='/cart' element={<Cart />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </Provider>
   );
 };
 
