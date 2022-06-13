@@ -31,7 +31,7 @@ const Register = ({ setAlert }) => {
         <button className='back-btn btn'>Go Back</button>
       </Link>
       <div className='register'>
-        <h1>Sign in</h1>
+        <h1>Register</h1>
         <hr></hr>
         <form onSubmit={(e) => onSubmit(e)}>
           <h4>Name</h4>
