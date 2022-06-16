@@ -75,7 +75,7 @@ const Register = ({ setAlert, register }) => {
             onChange={(e) => onChange(e)}
             minLength='8'
           ></input>
-          <button className='btn register-btn'>Submit</button>
+          <button className='btn register-btn'>Register</button>
         </form>
       </div>
     </div>
