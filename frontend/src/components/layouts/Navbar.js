@@ -1,7 +1,33 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { logout } from "../../actions/auth";
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const guestLink = (
+    <ul className='navlinks'>
+      <li>
+        <Link to='/cart'>Cart</Link>
+      </li>
+      <li>
+        <Link to='/login'>Sign in</Link>
+      </li>
+    </ul>
+  );
+
+  const authLink = (
+    <ul className='navlinks'>
+      <li>
+        <Link to='/cart'>Cart</Link>
+      </li>
+      <li>
+        <a onClick={logout} href='#!'>
+          Logout
+        </a>
+      </li>
+    </ul>
+  );
   return (
     <header>
       <Link id='logo' to='/'>
@@ -19,14 +45,9 @@ const Navbar = () => {
       </Link>
 
       <nav>
-        <ul className='navlinks'>
-          <li>
-            <Link to='/cart'>Cart</Link>
-          </li>
-          <li>
-            <Link to='/login'>Sign in</Link>
-          </li>
-        </ul>
+        {!loading && (
+          <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>
+        )}
         <div className='navlinks-drop-down noActionDiv hidden' id='noActionDiv'>
           <div className='drop-down hidden noActionDiv' id='noActionDiv'>
             <div className='drop-down-menu' id='noActionDiv'>
@@ -42,4 +63,13 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  auth: PropTypes.object.isRequired,
+  logout: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);
