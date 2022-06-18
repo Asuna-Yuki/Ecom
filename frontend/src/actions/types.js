@@ -11,3 +11,9 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 
 export const LOGOUT = "LOGOUT";
+
+// PRODUCTS
+export const GET_ALL_PRODUCT = "GET_ALL_PRODUCT";
+export const GET_ALL_PRODUCT_FAIL = "GET_ALL_PRODUCT_FAIL";
+
+export const CLEAR_PRODUCTS = "CLEAR_PRODUCTS";
