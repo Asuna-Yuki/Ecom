@@ -1,7 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Card from "./Card";
 
 const Home = () => {
+  const products = [
+    {
+      id: 1,
+      name: "Airpods Wireless Bluetooth Headphones",
+      image: "/images/Miku.jpg",
+      description:
+        "Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+      brand: "Apple",
+      category: "Electronics",
+      price: 89.99,
+      countInStock: 10,
+      rating: 4.5,
+      numReviews: 12,
+    },
+    {
+      id: 2,
+      name: "askfhjskdh",
+      image: "/images/Nino.png",
+      description:
+        "Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
+      brand: "Apple",
+      category: "Electronics",
+      price: 89.99,
+      countInStock: 10,
+      rating: 4.5,
+      numReviews: 12,
+    },
+  ];
   return (
     <div className='main'>
       <input
@@ -12,7 +41,10 @@ const Home = () => {
       <h1>Latest Products</h1>
 
       <div className='row'>
-        <div className='column'>
+        {products.map((product) => (
+          <Card key={product.id} product={product} />
+        ))}
+        {/* <div className='column'>
           <div className='column-content'>
             <Link to='/product'>
               <div className='product-image'>
@@ -115,7 +147,7 @@ const Home = () => {
               </div>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <hr></hr>
