@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Card from "./Card";
+import { getAllProducts } from "../../actions/product";
 
-const Home = () => {
+const Home = ({ getAllProducts }) => {
+  useEffect(() => {
+    getAllProducts();
+  }, []);
   const products = [
     {
       id: 1,
@@ -155,4 +161,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+Home.propTypes = {
+  getAllProducts: PropTypes.func.isRequired,
+};
+
+export default connect(null, { getAllProducts })(Home);
