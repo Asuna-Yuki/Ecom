@@ -1,7 +1,18 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Product = () => {
+const Product = ({ products: { products } }) => {
+  let params = useParams();
+  // gte product id from params i.e. url
+  const productId = params.id;
+
+  // GEt product by id
+  const product = products.filter((product) => product._id === productId);
+
+  console.log(product);
+
   return (
     <div className='main'>
       <Link to='/'>
@@ -11,21 +22,16 @@ const Product = () => {
       <div className='row'>
         <div className='product-column-1'>
           <div className='product-page-img'>
-            <img className='image' src='images/Miku.jpg' alt=''></img>
+            <img className='image' src={product[0].image} alt=''></img>
           </div>
         </div>
         <div className='product-column-2'>
           <div className='product-des'>
-            <h1>Product Name</h1>
+            <h1>{product[0].name}</h1>
             <hr></hr>
-            <p>Price</p>
+            <p>Price - {product[0].price}</p>
             <hr></hr>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consequatur sit, voluptate culpa optio totam molestiae
-              consequuntur dolor ipsum magni facilis, inventore neque quia
-              maxime odio laboriosam eligendi? Quae, expedita aperiam.
-            </p>
+            <p>{product[0].description}</p>
           </div>
         </div>
         <div className='product-column-3'>
@@ -33,7 +39,7 @@ const Product = () => {
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Price:</p>
-                <p>99$</p>
+                <p>{product[0].price}</p>
               </div>
             </div>
             <div className='product-detail-item'>
@@ -86,4 +92,12 @@ const Product = () => {
   );
 };
 
-export default Product;
+Product.propTypes = {
+  products: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  products: state.product,
+});
+
+export default connect(mapStateToProps, {})(Product);
