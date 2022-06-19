@@ -4,20 +4,20 @@ import {
   GET_ALL_PRODUCT_FAIL,
 } from "../actions/types";
 
-const productInitialState = [];
+const productInitialState = { products: [] };
 
 export default function (state = productInitialState, action) {
   const { type, payload } = action;
 
   switch (type) {
     case GET_ALL_PRODUCT:
-      return [...state, payload];
+      return { ...state, products: payload };
 
     case GET_ALL_PRODUCT_FAIL:
       return state;
 
     case CLEAR_PRODUCTS:
-      return [];
+      return { products: [] };
 
     default:
       return state;
