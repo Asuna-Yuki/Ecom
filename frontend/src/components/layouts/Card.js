@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Card = (props) => {
+const Card = ({ product }) => {
   return (
     <div className='column'>
       <div className='column-content'>
-        <Link to='/product'>
+        <Link to={`/product/${product._id}`}>
           <div className='product-image'>
-            <img className='image' src={props.product.image} alt=''></img>
+            <img className='image' src={product.image} alt=''></img>
           </div>
           <div className='product-name'>
-            <h5>{props.product.name}</h5>
-            <h2>PRICE</h2>
+            <h5>{product.name}</h5>
+            <h2>{product.price}</h2>
           </div>
         </Link>
       </div>
