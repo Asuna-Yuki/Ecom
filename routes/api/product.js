@@ -10,13 +10,13 @@ const Rreview = require("../../models/Review");
 
 router.get("/", async (req, res) => {
   try {
-    const product = await Product.find();
+    const products = await Product.find();
 
-    if (!product) {
+    if (!products) {
       return res.status(404).send("Product not found.");
     }
 
-    res.json(product);
+    res.json(products);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error.--product");
