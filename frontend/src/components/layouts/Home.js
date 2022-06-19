@@ -10,7 +10,6 @@ const Home = ({ getAllProducts, product: { products } }) => {
     getAllProducts();
   }, []);
 
-  console.log(products);
   return (
     <div className='main'>
       <input

@@ -2,16 +2,16 @@ import React, { Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Review from "./Review";
 
 const Product = ({ products: { products } }) => {
   let params = useParams();
-  // gte product id from params i.e. url
+
+  // get product id from params i.e. url
   const productId = params.id;
 
   // GEt product by id
   const product = products.filter((product) => product._id === productId);
-
-  console.log(product);
 
   return (
     <div className='main'>
@@ -22,7 +22,7 @@ const Product = ({ products: { products } }) => {
       <div className='row'>
         <div className='product-column-1'>
           <div className='product-page-img'>
-            <img className='image' src={product[0].image} alt=''></img>
+            <img className='image' src={product[0].image} alt='' />
           </div>
         </div>
         <div className='product-column-2'>
@@ -45,7 +45,7 @@ const Product = ({ products: { products } }) => {
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Status:</p>
-                <p>-----</p>
+                <p>{product[0].quantity > 0 ? `In Stock` : `Out of Stock`}</p>
               </div>
             </div>
             <div className='product-detail-item'>
@@ -66,27 +66,10 @@ const Product = ({ products: { products } }) => {
       </div>
       <div className='review-container'>
         <h2>REVIEWS</h2>
-        <div className='review'>
-          <p>Name</p>
-          <p>date - 32/13/4020</p>
-          <p>fiwehf hfeuiwhf ohfweohf oiahf oewih</p>
-          <br></br>
-          <hr></hr>
-        </div>
-        <div className='review'>
-          <p>Name</p>
-          <p>date - 32/13/4020</p>
-          <p>fiwehf hfeuiwhf ohfweohf oiahf oewih</p>
-          <br></br>
-          <hr></hr>
-        </div>
-        <div className='review'>
-          <p>Name</p>
-          <p>date - 32/13/4020</p>
-          <p>fiwehf hfeuiwhf ohfweohf oiahf oewih</p>
-          <br></br>
-          <hr></hr>
-        </div>
+        <Review />
+        <Review />
+        <Review />
+        <Review />
       </div>
     </div>
   );
