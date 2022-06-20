@@ -41,4 +41,19 @@ router.post(
   }
 );
 
+// @route  GEt api/review
+// @desc   get all review
+// @access Public
+
+router.get("/", async (req, res) => {
+  try {
+    const reviews = await Review.find();
+
+    !reviews ? res.json({ msg: "No reviews" }) : res.json(reviews);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error.--reviews");
+  }
+});
+
 module.exports = router;
