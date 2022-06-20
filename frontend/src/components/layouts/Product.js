@@ -1,17 +1,20 @@
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Review from "./Review";
+import { getProductById } from "../../actions/product";
 
-const Product = ({ products: { products } }) => {
+const Product = ({ singleProduct, getProductById }) => {
   let params = useParams();
 
   // get product id from params i.e. url
   const productId = params.id;
 
   // GEt product by id
-  const product = products.filter((product) => product._id === productId);
+  useEffect(() => {
+    getProductById(productId);
+  }, []);
 
   return (
     <div className='main'>
@@ -22,16 +25,16 @@ const Product = ({ products: { products } }) => {
       <div className='row'>
         <div className='product-column-1'>
           <div className='product-page-img'>
-            <img className='image' src={product[0].image} alt='' />
+            <img className='image' src={singleProduct.image} alt='' />
           </div>
         </div>
         <div className='product-column-2'>
           <div className='product-des'>
-            <h1>{product[0].name}</h1>
+            <h1>{singleProduct.name}</h1>
             <hr></hr>
-            <p>Price - {product[0].price}</p>
+            <p>Price - {singleProduct.price}</p>
             <hr></hr>
-            <p>{product[0].description}</p>
+            <p>{singleProduct.description}</p>
           </div>
         </div>
         <div className='product-column-3'>
@@ -39,13 +42,15 @@ const Product = ({ products: { products } }) => {
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Price:</p>
-                <p>{product[0].price}</p>
+                <p>{singleProduct.price}</p>
               </div>
             </div>
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Status:</p>
-                <p>{product[0].quantity > 0 ? `In Stock` : `Out of Stock`}</p>
+                <p>
+                  {singleProduct.quantity > 0 ? `In Stock` : `Out of Stock`}
+                </p>
               </div>
             </div>
             <div className='product-detail-item'>
@@ -57,7 +62,7 @@ const Product = ({ products: { products } }) => {
               </div>
             </div>
             <div className='product-detail-item'>
-              <a href=''>
+              <a href='#!'>
                 <button className='add-to-cart btn'>Add to Cart</button>
               </a>
             </div>
@@ -76,11 +81,12 @@ const Product = ({ products: { products } }) => {
 };
 
 Product.propTypes = {
-  products: PropTypes.object.isRequired,
+  singleProduct: PropTypes.object.isRequired,
+  getProductById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  products: state.product,
+  singleProduct: state.product.singleProduct,
 });
 
-export default connect(mapStateToProps, {})(Product);
+export default connect(mapStateToProps, { getProductById })(Product);
