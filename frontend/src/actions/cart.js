@@ -14,11 +14,11 @@ export const addItemInCart = (item) => (dispatch, getState) => {
       JSON.stringify(getState().cart.cartItems)
     );
   } catch (err) {
-    console.log(err);
-    const errors = err.message.data.errors;
+    const errors = [err.message];
+    console.log(errors);
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg)));
+      errors.forEach((error) => dispatch(setAlert(errors)));
     }
   }
 };
