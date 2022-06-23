@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Review from "./Review";
 import { getProductById } from "../../actions/product";
+import { addItemInCart } from "../../actions/cart";
 
-const Product = ({ singleProduct, getProductById }) => {
+const Product = ({ singleProduct, getProductById, addItemInCart }) => {
   let params = useParams();
 
   // get product id from params i.e. url
@@ -63,7 +64,12 @@ const Product = ({ singleProduct, getProductById }) => {
             </div>
             <div className='product-detail-item'>
               <a href='#!'>
-                <button className='add-to-cart btn'>Add to Cart</button>
+                <button
+                  className='add-to-cart btn'
+                  onClick={() => addItemInCart(singleProduct)}
+                >
+                  Add to Cart
+                </button>
               </a>
             </div>
           </div>
@@ -83,10 +89,13 @@ const Product = ({ singleProduct, getProductById }) => {
 Product.propTypes = {
   singleProduct: PropTypes.object.isRequired,
   getProductById: PropTypes.func.isRequired,
+  addItemInCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   singleProduct: state.product.singleProduct,
 });
 
-export default connect(mapStateToProps, { getProductById })(Product);
+export default connect(mapStateToProps, { getProductById, addItemInCart })(
+  Product
+);
