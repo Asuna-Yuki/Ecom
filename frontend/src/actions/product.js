@@ -32,7 +32,6 @@ export const getAllProducts = () => async (dispatch) => {
 
 // get product by id
 export const getProductById = (productId) => async (dispatch) => {
-  // const data = JSON.stringify({ productId });
   try {
     const res = await axios.get(`/api/product/${productId}`);
     dispatch({
