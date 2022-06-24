@@ -14,14 +14,19 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
+import { loadCart } from "./actions/cart";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
+}
+if (!localStorage.cartItems) {
+  localStorage.setItem("cartItems", JSON.stringify([]));
 }
 
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadCart());
   }, []);
   return (
     <Provider store={store}>

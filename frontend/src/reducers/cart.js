@@ -1,4 +1,4 @@
-import { ADD_ITEM_CART } from "../actions/types";
+import { ADD_ITEM_CART, LOAD_CART, REMOVE_ITEM_CART } from "../actions/types";
 
 const initialState = {
   cartItems: [],
@@ -26,6 +26,25 @@ export default function (state = initialState, action) {
           cartItems: [...state.cartItems, payload],
         };
       }
+
+    case REMOVE_ITEM_CART:
+      const items = state.cartItems.filter((y) => {
+        return y._id !== payload;
+      });
+      return {
+        ...state,
+        cartItems: items.map((item) => {
+          return item;
+        }),
+      };
+
+    case LOAD_CART:
+      return {
+        ...state,
+        cartItems: JSON.parse(localStorage.getItem("cartItems")).map((x) => {
+          return x;
+        }),
+      };
 
     default:
       return state;
