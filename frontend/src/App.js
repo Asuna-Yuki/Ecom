@@ -15,6 +15,7 @@ import store from "./store";
 import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 import { loadCart } from "./actions/cart";
+import Checkout from "./components/auth/Checkout";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -39,6 +40,7 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/checkout' element={<Checkout />} />
         </Routes>
         <Footer />
       </Router>
