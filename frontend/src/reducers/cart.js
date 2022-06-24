@@ -1,7 +1,13 @@
-import { ADD_ITEM_CART, LOAD_CART, REMOVE_ITEM_CART } from "../actions/types";
+import {
+  ADD_ADDRESS,
+  ADD_ITEM_CART,
+  LOAD_CART,
+  REMOVE_ITEM_CART,
+} from "../actions/types";
 
 const initialState = {
   cartItems: [],
+  shippingAddress: null,
 };
 
 export default function (state = initialState, action) {
@@ -38,12 +44,19 @@ export default function (state = initialState, action) {
         }),
       };
 
+    case ADD_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: payload,
+      };
+
     case LOAD_CART:
       return {
         ...state,
         cartItems: JSON.parse(localStorage.getItem("cartItems")).map((x) => {
           return x;
         }),
+        shippingAddress: JSON.parse(localStorage.getItem("shippingAddress")),
       };
 
     default:

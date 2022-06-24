@@ -25,3 +25,4 @@ export const GET_PRODUCT_BY_ID_FAIL = "GET_PRODUCT_BY_ID_FAIL";
 export const ADD_ITEM_CART = "ADD_ITEM_CART";
 export const REMOVE_ITEM_CART = "REMOVE_ITEM_CART";
 export const LOAD_CART = "LOAD_CART";
+export const ADD_ADDRESS = "ADD_ADDRESS";
