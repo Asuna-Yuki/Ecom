@@ -58,7 +58,11 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
               <div className='row'>
                 <p>Quantity:</p>
                 <p>
-                  <input type='number' className='quantity-input'></input>
+                  <input
+                    type='number'
+                    className='quantity-input'
+                    defaultValue={1}
+                  />
                 </p>
               </div>
             </div>

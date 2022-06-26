@@ -50,7 +50,7 @@ const Checkout = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
           <input
             className='register-input'
             type='text'
-            placeholder='Address'
+            placeholder='City'
             name='city'
             value={city}
             onChange={(e) => onChange(e)}
@@ -60,7 +60,7 @@ const Checkout = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
           <input
             className='register-input'
             type='text'
-            placeholder='Address'
+            placeholder='State'
             name='state'
             value={state}
             onChange={(e) => onChange(e)}
@@ -70,7 +70,7 @@ const Checkout = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
           <input
             className='register-input'
             type='number'
-            placeholder='Address'
+            placeholder='Pincode'
             name='pincode'
             value={pincode}
             onChange={(e) => onChange(e)}
