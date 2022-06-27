@@ -7,15 +7,27 @@ import { getProductById } from "../../actions/product";
 import { addItemInCart } from "../../actions/cart";
 
 const Product = ({ singleProduct, getProductById, addItemInCart }) => {
+  // GEt product by id
+  useEffect(() => {
+    getProductById(productId);
+  }, []);
+
   let params = useParams();
 
   // get product id from params i.e. url
   const productId = params.id;
 
-  // GEt product by id
-  useEffect(() => {
-    getProductById(productId);
-  }, []);
+  const [data, setData] = useState({ input: 1 });
+
+  const onChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  if (singleProduct.quantity <= data.input) {
+    // add product to cart with data.input
+  } else {
+    // not enough produc in stock
+  }
 
   return (
     <div className='main'>
@@ -61,7 +73,11 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
                   <input
                     type='number'
                     className='quantity-input'
-                    defaultValue={1}
+                    name='input'
+                    min={1}
+                    max={5}
+                    value={data.input}
+                    onChange={(e) => onChange(e)}
                   />
                 </p>
               </div>
