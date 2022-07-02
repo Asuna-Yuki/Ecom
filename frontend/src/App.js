@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Components
 import Navbar from "./components/layouts/Navbar";
 import Home from "./components/layouts/Home";
 import Footer from "./components/layouts/Footer";
@@ -9,13 +11,16 @@ import Login from "./components/auth/Login";
 import Product from "./components/layouts/Product";
 import Cart from "./components/layouts/Cart";
 import Alert from "./components/layouts/Alert";
+import Address from "./components/auth/Address";
+import Payment from "./components/auth/Payment";
+import Checkout from "./components/auth/Checkout";
+
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
-import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
+import { loadUser } from "./actions/auth";
 import { loadCart } from "./actions/cart";
-import Checkout from "./components/auth/Checkout";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -40,6 +45,8 @@ const App = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/address' element={<Address />} />
+          <Route path='/payment' element={<Payment />} />
           <Route path='/checkout' element={<Checkout />} />
         </Routes>
         <Footer />
