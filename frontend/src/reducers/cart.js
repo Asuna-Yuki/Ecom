@@ -3,11 +3,13 @@ import {
   ADD_ITEM_CART,
   LOAD_CART,
   REMOVE_ITEM_CART,
+  SET_PAYMENT_METHOD,
 } from "../actions/types";
 
 const initialState = {
   cartItems: [],
   shippingAddress: null,
+  paymentMethod: "",
 };
 
 export default function (state = initialState, action) {
@@ -44,12 +46,6 @@ export default function (state = initialState, action) {
         }),
       };
 
-    case ADD_ADDRESS:
-      return {
-        ...state,
-        shippingAddress: payload,
-      };
-
     case LOAD_CART:
       return {
         ...state,
@@ -57,6 +53,19 @@ export default function (state = initialState, action) {
           return x;
         }),
         shippingAddress: JSON.parse(localStorage.getItem("shippingAddress")),
+        paymentMethod: JSON.parse(localStorage.getItem("paymentMethod")),
+      };
+
+    case ADD_ADDRESS:
+      return {
+        ...state,
+        shippingAddress: payload,
+      };
+
+    case SET_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymentMethod: payload,
       };
 
     default:

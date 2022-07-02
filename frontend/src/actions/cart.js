@@ -3,6 +3,7 @@ import {
   ADD_ADDRESS,
   ADD_ITEM_CART,
   LOAD_CART,
+  SET_PAYMENT_METHOD,
   REMOVE_ITEM_CART,
 } from "./types";
 
@@ -67,7 +68,6 @@ export const loadCart = () => (dispatch) => {
 // save address
 export const shippingAddress = (address) => (dispatch, getState) => {
   try {
-    console.log(address);
     dispatch({
       type: ADD_ADDRESS,
       payload: address,
@@ -75,6 +75,27 @@ export const shippingAddress = (address) => (dispatch, getState) => {
     localStorage.setItem(
       "shippingAddress",
       JSON.stringify(getState().cart.shippingAddress)
+    );
+  } catch (err) {
+    const errors = [err.message];
+    console.log(errors);
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error)));
+    }
+  }
+};
+
+// save payment method
+export const paymentMethod = (paymentMethod) => (dispatch, getState) => {
+  try {
+    dispatch({
+      type: SET_PAYMENT_METHOD,
+      payload: paymentMethod,
+    });
+    localStorage.setItem(
+      "paymentMethod",
+      JSON.stringify(getState().cart.paymentMethod)
     );
   } catch (err) {
     const errors = [err.message];

@@ -26,3 +26,4 @@ export const ADD_ITEM_CART = "ADD_ITEM_CART";
 export const REMOVE_ITEM_CART = "REMOVE_ITEM_CART";
 export const LOAD_CART = "LOAD_CART";
 export const ADD_ADDRESS = "ADD_ADDRESS";
+export const SET_PAYMENT_METHOD = "SET_PAYMENT_METHOD";
