@@ -25,7 +25,7 @@ const Cart = ({ isAuthenticated, cart }) => {
         <h1>SUBTOTAL</h1>
         <p>{}</p>
         {isAuthenticated ? (
-          <Link to='/checkout'>
+          <Link to='/address'>
             <button className='btn'>CheckOut</button>
           </Link>
         ) : (
