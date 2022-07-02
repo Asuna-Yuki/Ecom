@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
 import { shippingAddress } from "../../actions/cart";
@@ -15,17 +15,21 @@ const Address = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
 
   const { address, city, state, pincode } = formData;
 
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  let navigate = useNavigate();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    shippingAddress(formData);
+    navigate("/payment");
+  };
+
   if (!loading && !isAuthenticated) {
     return <Navigate to='/' />;
   }
 
-  const onChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    shippingAddress(formData);
-  };
   return (
     <div className='main'>
       <Link to='/cart'>

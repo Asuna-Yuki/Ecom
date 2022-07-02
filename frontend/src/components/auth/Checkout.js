@@ -3,7 +3,10 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Checkout = ({ auth: { isAuthenticated, loading } }) => {
+const Checkout = ({
+  auth: { isAuthenticated, loading },
+  cart: { cartItems, shippingAddress, paymentMethod },
+}) => {
   if (!loading && !isAuthenticated) {
     return <Navigate to='/' />;
   }
@@ -12,13 +15,16 @@ const Checkout = ({ auth: { isAuthenticated, loading } }) => {
       <div className='row'>
         <div className='product-column-2'>
           <h1>SHIPPING</h1>
-          <p>Some address</p>
+          <p>
+            {shippingAddress.address},{shippingAddress.city},
+            {shippingAddress.state},{shippingAddress.pincode}
+          </p>
           <hr />
           <h1>PAYMENT METHOD</h1>
-          <p>some method</p>
+          <p>{paymentMethod.data}</p>
           <hr />
           <h1>ORDEER ITEMS</h1>
-          <p>list of items</p>
+          <p>{cartItems[0].name}</p>
         </div>
         <div className='product-column-3'>
           <div className='product-detail'>
@@ -30,7 +36,7 @@ const Checkout = ({ auth: { isAuthenticated, loading } }) => {
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Items:</p>
-                <p>1</p>
+                <p>{cartItems.length}</p>
               </div>
             </div>
             <div className='product-detail-item'>
@@ -59,10 +65,12 @@ const Checkout = ({ auth: { isAuthenticated, loading } }) => {
 
 Checkout.propTypes = {
   auth: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  cart: state.cart,
 });
 
 export default connect(mapStateToProps, {})(Checkout);

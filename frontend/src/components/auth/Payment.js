@@ -1,14 +1,22 @@
 import { connect } from "react-redux";
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { paymentMethod } from "../../actions/cart";
 
-const Payment = ({ auth: { isAuthenticated, loading } }) => {
+const Payment = ({ auth: { isAuthenticated, loading }, paymentMethod }) => {
+  let navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    paymentMethod({ data: "paypal" });
+    navigate("/checkout");
+  };
+
   if (!loading && !isAuthenticated) {
     return <Navigate to='/' />;
   }
 
-  const onSubmit = () => {};
   return (
     <div className='main'>
       <h1>PAYMENT METHOD</h1>
@@ -33,10 +41,11 @@ const Payment = ({ auth: { isAuthenticated, loading } }) => {
 
 Payment.propTypes = {
   auth: PropTypes.object.isRequired,
+  paymentMethod: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(Payment);
+export default connect(mapStateToProps, { paymentMethod })(Payment);
