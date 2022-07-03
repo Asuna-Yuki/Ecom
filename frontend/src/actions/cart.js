@@ -66,7 +66,7 @@ export const loadCart = () => (dispatch) => {
 };
 
 // save address
-export const shippingAddress = (address) => (dispatch, getState) => {
+export const setShippingAddress = (address) => (dispatch, getState) => {
   try {
     dispatch({
       type: ADD_ADDRESS,
