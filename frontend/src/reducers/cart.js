@@ -9,7 +9,8 @@ import {
 const initialState = {
   cartItems: [],
   shippingAddress: null,
-  paymentMethod: "",
+  paymentMethod: null,
+  cartLoading: true,
 };
 
 export default function (state = initialState, action) {
@@ -54,6 +55,7 @@ export default function (state = initialState, action) {
         }),
         shippingAddress: JSON.parse(localStorage.getItem("shippingAddress")),
         paymentMethod: JSON.parse(localStorage.getItem("paymentMethod")),
+        cartLoading: false,
       };
 
     case ADD_ADDRESS:
@@ -66,6 +68,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         paymentMethod: payload,
+        cartLoading: false,
       };
 
     default:

@@ -23,11 +23,16 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  if (singleProduct.quantity <= data.input) {
-    // add product to cart with data.input
-  } else {
-    // not enough produc in stock
-  }
+  const onClick = () => {
+    if (data.input <= singleProduct.quantity) {
+      // add product to cart with data.input
+      singleProduct.quantity = parseInt(data.input);
+      addItemInCart(singleProduct);
+    } else {
+      // not enough produck in stock
+      console.log("NOT ENOUGH PRODUCT IN STOCK.");
+    }
+  };
 
   return (
     <div className='main'>
@@ -84,10 +89,7 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
             </div>
             <div className='product-detail-item'>
               <a href='#!'>
-                <button
-                  className='add-to-cart btn'
-                  onClick={() => addItemInCart(singleProduct)}
-                >
+                <button className='add-to-cart btn' onClick={() => onClick()}>
                   Add to Cart
                 </button>
               </a>
