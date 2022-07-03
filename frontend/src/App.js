@@ -28,6 +28,12 @@ if (localStorage.token) {
 if (!localStorage.cartItems) {
   localStorage.setItem("cartItems", JSON.stringify([]));
 }
+if (!localStorage.shippingAddress) {
+  localStorage.setItem(
+    "shippingAddress",
+    JSON.stringify({ address: "", state: "", city: "", pincode: "" })
+  );
+}
 
 const App = () => {
   useEffect(() => {

@@ -3,14 +3,19 @@ import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
-import { shippingAddress } from "../../actions/cart";
+import { setShippingAddress } from "../../actions/cart";
 
-const Address = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
+const Address = ({
+  auth: { isAuthenticated, loading },
+  setShippingAddress,
+  cart: { shippingAddress, cartLoading },
+}) => {
+  const sAddress = JSON.parse(localStorage.getItem("shippingAddress"));
   const [formData, setFormData] = useState({
-    address: "",
-    city: "",
-    state: "",
-    pincode: "",
+    address: sAddress.address,
+    city: sAddress.city,
+    state: sAddress.state,
+    pincode: sAddress.pincode,
   });
 
   const { address, city, state, pincode } = formData;
@@ -22,7 +27,7 @@ const Address = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
   let navigate = useNavigate();
   const onSubmit = (e) => {
     e.preventDefault();
-    shippingAddress(formData);
+    setShippingAddress(formData);
     navigate("/payment");
   };
 
@@ -88,11 +93,13 @@ const Address = ({ auth: { isAuthenticated, loading }, shippingAddress }) => {
 
 Address.propTypes = {
   auth: PropTypes.object.isRequired,
-  shippingAddress: PropTypes.func.isRequired,
+  setShippingAddress: PropTypes.func.isRequired,
+  cart: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  cart: state.cart,
 });
 
-export default connect(mapStateToProps, { shippingAddress })(Address);
+export default connect(mapStateToProps, { setShippingAddress })(Address);
