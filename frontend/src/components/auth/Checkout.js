@@ -1,12 +1,24 @@
 import { connect } from "react-redux";
-import React from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import { createOrder } from "../../actions/order";
 
 const Checkout = ({
-  auth: { isAuthenticated, loading },
+  auth: { isAuthenticated, loading, user },
   cart: { cartItems, shippingAddress, paymentMethod, cartLoading },
+  createOrder,
+  order: { lastOrder, orderLoading, success },
 }) => {
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${lastOrder}`);
+    }
+  }, [success]);
+  const onClick = () => {
+    createOrder({ cartItems, shippingAddress, paymentMethod, user });
+  };
   if (!loading && !isAuthenticated) {
     return <Navigate to='/' />;
   }
@@ -56,9 +68,9 @@ const Checkout = ({
                 </div>
               </div>
               <div className='product-detail-item'>
-                <a href='#!'>
-                  <button className='add-to-cart btn'>Place Order</button>
-                </a>
+                <button onClick={() => onClick()} className='add-to-cart btn'>
+                  Place Order
+                </button>
               </div>
             </div>
           </div>
@@ -71,11 +83,14 @@ const Checkout = ({
 Checkout.propTypes = {
   auth: PropTypes.object.isRequired,
   cart: PropTypes.object.isRequired,
+  createOrder: PropTypes.func.isRequired,
+  order: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   cart: state.cart,
+  order: state.order,
 });
 
-export default connect(mapStateToProps, {})(Checkout);
+export default connect(mapStateToProps, { createOrder })(Checkout);
