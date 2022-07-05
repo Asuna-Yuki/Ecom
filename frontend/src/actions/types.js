@@ -27,3 +27,7 @@ export const REMOVE_ITEM_CART = "REMOVE_ITEM_CART";
 export const LOAD_CART = "LOAD_CART";
 export const ADD_ADDRESS = "ADD_ADDRESS";
 export const SET_PAYMENT_METHOD = "SET_PAYMENT_METHOD";
+
+// ORDER
+export const ORDER_SUCCESS = "ORDER_SUCCESS";
+export const ORDER_FAIL = "ORDER_FAIL";
