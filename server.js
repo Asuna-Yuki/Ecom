@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/db");
+const path = require("path");
 
 const app = express();
 
@@ -19,6 +20,16 @@ app.use("/api/review", require("./routes/api/review"));
 app.use("/api/product", require("./routes/api/product"));
 app.use("/api/checkout", require("./routes/api/checkout"));
 app.use("/api/order", require("./routes/api/order"));
+
+// serve static assets to production
+if (process.env.NODE_ENV == "production") {
+  // set static folder
+  app.use(express.static("frontend/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
