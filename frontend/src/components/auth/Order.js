@@ -1,16 +1,23 @@
 import { connect } from "react-redux";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
+import { getOrderById } from "../../actions/order";
 
-const Order = ({ auth: { loading, isAuthenticated }, order }) => {
+const Order = ({ auth: { loading, isAuthenticated }, getOrderById, order }) => {
+  // GEt product by id
+  useEffect(() => {
+    getOrderById(orderId);
+  }, []);
+
   let params = useParams();
+
+  const orderId = params.id;
+  console.log(order.orderDetail);
+
   if (!loading && !isAuthenticated) {
     return <Navigate to='/' />;
   }
-  console.log(order);
-
-  const orderId = params.id;
   return (
     <div className='main'>
       <Link to='/payment'>
@@ -24,6 +31,7 @@ const Order = ({ auth: { loading, isAuthenticated }, order }) => {
 Order.propTypes = {
   auth: PropTypes.object.isRequired,
   order: PropTypes.object.isRequired,
+  getOrderById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -31,4 +39,4 @@ const mapStateToProps = (state) => ({
   order: state.order,
 });
 
-export default connect(mapStateToProps, {})(Order);
+export default connect(mapStateToProps, { getOrderById })(Order);

@@ -1,7 +1,12 @@
-import { ORDER_SUCCESS, ORDER_FAIL } from "../actions/types";
+import {
+  ORDER_SUCCESS,
+  ORDER_FAIL,
+  ORDER_DETAIL_SUCCESS,
+} from "../actions/types";
 const initialState = {
-  orderLoading: true,
+  orderDetail: {},
   lastOrder: null,
+  orderLoading: true,
   success: false,
 };
 
@@ -15,6 +20,18 @@ export default function (state = initialState, action) {
         orderLoading: false,
         lastOrder: payload.order,
         success: true,
+      };
+
+    case ORDER_FAIL:
+      return {
+        ...state,
+        orderLoading: false,
+      };
+
+    case ORDER_DETAIL_SUCCESS:
+      return {
+        ...state,
+        orderDetail: payload,
       };
 
     default:
