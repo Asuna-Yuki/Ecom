@@ -42,28 +42,4 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// @Route  POST api/product
-// @desc   creating new product
-// @access Private
-
-router.post("/", async (req, res) => {
-  const { name, image, price, description } = req.body;
-  try {
-    const newProduct = new Product({
-      name: name,
-      image: image,
-      price: price,
-      description: description,
-      review: [],
-    });
-
-    const product = await newProduct.save();
-
-    res.json(product);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error.--product create.");
-  }
-});
-
 module.exports = router;
