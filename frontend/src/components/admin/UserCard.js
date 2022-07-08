@@ -17,19 +17,6 @@ const UserCard = ({ user }) => {
       </span>
     </div>
   );
-
-  // return (
-  //   <div className='column'>
-  //     <div className='column-content'>
-  //       {/* <Link to={`/product/${product._id}`}> */}
-  //       <div className='product-name'>
-  //         <h5>{user.name}</h5>
-  //         <h2>{user.email}</h2>
-  //       </div>
-  //       {/* </Link> */}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default connect(null, {})(UserCard);

@@ -17,7 +17,7 @@ import Checkout from "./components/auth/Checkout";
 import Order from "./components/auth/Order";
 // Admin
 import UserList from "./components/admin/UserList";
-import User from "./components/admin/User";
+import UserInfo from "./components/admin/UserInfo";
 
 // Redux
 import { Provider } from "react-redux";
@@ -25,6 +25,8 @@ import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import { loadCart } from "./actions/cart";
+import ProductList from "./components/admin/ProductList";
+import ProductInfo from "./components/admin/ProductInfo";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -60,7 +62,9 @@ const App = () => {
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order/:id' element={<Order />} />
           <Route path='/admin/userlist' element={<UserList />} />
-          <Route path='/admin/user/:id' element={<User />} />
+          <Route path='/admin/user/:id' element={<UserInfo />} />
+          <Route path='/admin/productlist' element={<ProductList />} />
+          <Route path='/admin/product/:id' element={<ProductInfo />} />
         </Routes>
         <Footer />
       </Router>
