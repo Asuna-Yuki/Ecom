@@ -32,7 +32,7 @@ router.post("/", auth, admin, async (req, res) => {
 // @desc   getting all products
 // @access Private/Admin
 
-router.get("/", async (req, res) => {
+router.get("/", auth, admin, async (req, res) => {
   try {
     const products = await Product.find();
 
@@ -51,7 +51,7 @@ router.get("/", async (req, res) => {
 // @desc   get product by id
 // @access Private/Admin
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", auth, admin, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id); //req.params.id
 
