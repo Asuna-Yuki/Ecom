@@ -5,9 +5,9 @@ const auth = require("../../../middleware/auth");
 
 const User = require("../../../models/User");
 
-// @route  GET api/profile
-// @desc   Test route
-// @access Private
+// @route  GET api/users
+// @desc   get all users
+// @access Private/Admin
 router.get("/", auth, admin, async (req, res) => {
   try {
     const users = await User.find();
@@ -20,6 +20,25 @@ router.get("/", auth, admin, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error.--users");
+  }
+});
+
+// @route  GET api/users
+// @desc   get user by id
+// @access Private/Admin
+router.get("/:id", auth, admin, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    console.log(user);
+
+    if (!user) {
+      return res.status(404).send("User not found.");
+    }
+
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error.--user");
   }
 });
 
