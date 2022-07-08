@@ -21,8 +21,8 @@ app.use("/api/order", require("./routes/api/order"));
 
 // admin routes
 app.use("/api/admin/users", require("./routes/api/admin/users"));
-app.use("/api/admin/order", require("./routes/api/admin/orders"));
-app.use("/api/admin/product", require("./routes/api/admin/products"));
+app.use("/api/admin/orders", require("./routes/api/admin/orders"));
+app.use("/api/admin/products", require("./routes/api/admin/products"));
 
 // serve static assets to production
 if (process.env.NODE_ENV == "production") {
