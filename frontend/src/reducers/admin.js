@@ -1,11 +1,21 @@
 import {
+  GET_ALL_PRODUCT,
+  GET_ALL_PRODUCT_FAIL,
   GET_ALL_USERS_FAIL,
   GET_ALL_USERS_SUCCESS,
+  GET_PRODUCT_BY_ID_FAIL,
+  GET_PRODUCT_BY_ID_SUCCESS,
   GET_USER_BY_ID_FAIL,
   GET_USER_BY_ID_SUCCESS,
 } from "../actions/types";
 
-const initialState = { userList: [], userDetails: {}, loading: true };
+const initialState = {
+  userList: [],
+  userDetails: {},
+  productList: [],
+  productDetails: {},
+  loading: true,
+};
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -25,8 +35,24 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+    case GET_ALL_PRODUCT:
+      return {
+        ...state,
+        productList: payload,
+        loading: false,
+      };
+
+    case GET_PRODUCT_BY_ID_SUCCESS:
+      return {
+        ...state,
+        productDetails: payload,
+        loading: false,
+      };
+
     case GET_ALL_USERS_FAIL:
     case GET_USER_BY_ID_FAIL:
+    case GET_ALL_PRODUCT_FAIL:
+    case GET_PRODUCT_BY_ID_FAIL:
       return {
         ...state,
         loading: false,
