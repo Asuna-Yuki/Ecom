@@ -15,6 +15,8 @@ import Address from "./components/auth/Address";
 import Payment from "./components/auth/Payment";
 import Checkout from "./components/auth/Checkout";
 import Order from "./components/auth/Order";
+// Admin
+import Users from "./components/admin/Users";
 
 // Redux
 import { Provider } from "react-redux";
@@ -56,6 +58,7 @@ const App = () => {
           <Route path='/payment' element={<Payment />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order/:id' element={<Order />} />
+          <Route path='/admin/users' element={<Users />} />
         </Routes>
         <Footer />
       </Router>

@@ -19,6 +19,11 @@ app.use("/api/product", require("./routes/api/product"));
 app.use("/api/checkout", require("./routes/api/checkout"));
 app.use("/api/order", require("./routes/api/order"));
 
+// admin routes
+app.use("/api/admin/users", require("./routes/api/admin/users"));
+app.use("/api/admin/order", require("./routes/api/admin/orders"));
+app.use("/api/admin/product", require("./routes/api/admin/products"));
+
 // serve static assets to production
 if (process.env.NODE_ENV == "production") {
   // set static folder
