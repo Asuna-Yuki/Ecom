@@ -413,6 +413,42 @@ h4 {
 }
 
 /* cart */
+/* admin product */
+
+.admin-column {
+  display: flex;
+  margin-top: 1em;
+}
+
+.admin-column .info {
+  /* flex-basis: 30%; */
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 1em;
+  margin-left: 0.5em;
+  background: var(--lightGrey);
+}
+.info {
+  font-size: 1.2em;
+  font-weight: 500;
+  flex-basis: 25%;
+}
+.info:nth-child(1) {
+  flex-basis: 30%;
+}
+.info:nth-child(2) {
+  flex-basis: 30%;
+}
+.info:nth-child(3) {
+  flex-basis: 20%;
+}
+.info:nth-child(4) {
+  flex-basis: 10%;
+}
+.info:nth-child(5) {
+  flex-basis: 10%;
+}
 
 /* footer */
 

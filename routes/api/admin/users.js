@@ -29,7 +29,6 @@ router.get("/", auth, admin, async (req, res) => {
 router.get("/:id", auth, admin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    console.log(user);
 
     if (!user) {
       return res.status(404).send("User not found.");

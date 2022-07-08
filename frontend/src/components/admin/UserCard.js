@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 
 const UserCard = ({ user }) => {
   return (
-    <div>
-      <span>{user._id} </span>
-      <span>{user.name} </span>
-      <span>{user.email} </span>
-      <span>{user.isAdmin} </span>
-      <span>
+    <div className='admin-column'>
+      <span className='info'>{user._id}</span>
+      <span className='info'>{user.name}</span>
+      <span className='info'>{user.email}</span>
+      <span className='info'>{user.isAdmin ? `Admin` : `Not Admin`}</span>
+      <span className='info'>
         <Link to={`/admin/user/${user._id}`}>
           <button className='btn' />
         </Link>

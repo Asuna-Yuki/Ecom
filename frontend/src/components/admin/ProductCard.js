@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 
 const ProductCard = ({ product }) => {
   return (
-    <div>
-      <span>{product._id} </span>
-      <span>{product.name} </span>
-      <span>{product.quantity} </span>
-      <span>{product.price} </span>
-      <span>
+    <div className='admin-column'>
+      <span className='info'>{product._id}</span>
+      <span className='info'>{product.name}</span>
+      <span className='info'>{product.price}</span>
+      <span className='info'>{product.quantity}</span>
+      <span className='info'>
         <Link to={`/admin/product/${product._id}`}>
           <button className='btn' />
         </Link>

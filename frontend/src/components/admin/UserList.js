@@ -16,7 +16,24 @@ const UserList = ({ getAllUsers, admin }) => {
         type='text'
         placeholder='Search...'
       />
-      <h1>ADMIN</h1>
+      <h1>USERS</h1>
+      <div className='admin-column'>
+        <div className='info'>
+          <h2>Id</h2>
+        </div>
+        <div className='info'>
+          <h2>Name</h2>
+        </div>
+        <div className='info'>
+          <h2>Email</h2>
+        </div>
+        <div className='info'>
+          <h2>Admin</h2>
+        </div>
+        <div className='info'>
+          <h2></h2>
+        </div>
+      </div>
       {admin.userList.map((user) => (
         <UserCard key={user._id} user={user} />
       ))}

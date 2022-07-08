@@ -16,7 +16,24 @@ const ProductList = ({ getAllProducts, admin }) => {
         type='text'
         placeholder='Search...'
       />
-      <h1>ADMIN</h1>
+      <h1>PRODUCTS</h1>
+      <div className='admin-column'>
+        <div className='info'>
+          <h2>Id</h2>
+        </div>
+        <div className='info'>
+          <h2>Name</h2>
+        </div>
+        <div className='info'>
+          <h2>Price</h2>
+        </div>
+        <div className='info'>
+          <h2>Quantity</h2>
+        </div>
+        <div className='info'>
+          <h2></h2>
+        </div>
+      </div>
       {admin.productList.map((product) => (
         <ProductCard key={product._id} product={product} />
       ))}

@@ -72,6 +72,7 @@ export const getProductById = (productId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    console.log(err.message);
     console.log("getProductByIdFail. --admin error");
 
     dispatch({
