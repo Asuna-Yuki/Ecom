@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Card from "./Card";
 import { getAllProducts } from "../../actions/product";
+import Loader from "./Loader";
 
-const Home = ({ getAllProducts, product: { products } }) => {
+const Home = ({ getAllProducts, product: { products, loading } }) => {
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -19,11 +20,15 @@ const Home = ({ getAllProducts, product: { products } }) => {
       />
       <h1>Latest Products</h1>
 
-      <div className='row'>
-        {products.map((product) => (
-          <Card key={product._id} product={product} />
-        ))}
-      </div>
+      {!loading ? (
+        <div className='row'>
+          {products.map((product) => (
+            <Card key={product._id} product={product} />
+          ))}
+        </div>
+      ) : (
+        <Loader />
+      )}
 
       <hr></hr>
     </div>
