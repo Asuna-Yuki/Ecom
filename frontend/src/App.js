@@ -16,6 +16,7 @@ import Payment from "./components/auth/Payment";
 import Checkout from "./components/auth/Checkout";
 import Order from "./components/auth/Order";
 // Admin
+import AdminDashboard from "./components/admin/AdminDashboard";
 import UserList from "./components/admin/UserList";
 import UserInfo from "./components/admin/UserInfo";
 
@@ -65,6 +66,7 @@ const App = () => {
           <Route path='/admin/user/:id' element={<UserInfo />} />
           <Route path='/admin/productlist' element={<ProductList />} />
           <Route path='/admin/product/:id' element={<ProductInfo />} />
+          <Route path='/admin' element={<AdminDashboard />} />
         </Routes>
         <Footer />
       </Router>

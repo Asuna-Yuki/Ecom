@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
-const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const guestLink = (
     <ul className='navlinks'>
       <li>
@@ -16,18 +16,33 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     </ul>
   );
 
-  const authLink = (
-    <ul className='navlinks'>
-      <li>
-        <Link to='/cart'>Cart</Link>
-      </li>
-      <li>
-        <a onClick={logout} href='#!'>
-          Logout
-        </a>
-      </li>
-    </ul>
-  );
+  const authLink =
+    user && !user.isAdmin ? (
+      <ul className='navlinks'>
+        <li>
+          <Link to='/cart'>Cart</Link>
+        </li>
+        <li>
+          <a onClick={logout} href='#!'>
+            Logout
+          </a>
+        </li>
+      </ul>
+    ) : (
+      <ul className='navlinks'>
+        <li>
+          <Link to='/admin'>Admin</Link>
+        </li>
+        <li>
+          <Link to='/cart'>Cart</Link>
+        </li>
+        <li>
+          <a onClick={logout} href='#!'>
+            Logout
+          </a>
+        </li>
+      </ul>
+    );
   return (
     <header>
       <Link id='logo' to='/'>

@@ -416,8 +416,11 @@ h4 {
 /* admin product */
 
 .admin-column {
-  display: flex;
+  /* display: flex; */
   margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr 1fr 0.5fr 0.5fr;
+  gap: 0.5em;
 }
 
 .admin-column .info {

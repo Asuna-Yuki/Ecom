@@ -16,6 +16,9 @@ const UserList = ({ getAllUsers, admin }) => {
         type='text'
         placeholder='Search...'
       />
+      <Link to='/admin'>
+        <button className='back-btn btn'>Go Back</button>
+      </Link>
       <h1>USERS</h1>
       <div className='admin-column'>
         <div className='info'>

@@ -16,8 +16,8 @@ const UserInfo = ({ getUserById, admin }) => {
   const userId = params.id;
 
   const [formData, setFormData] = useState({
-    name: admin.userDetails.name,
-    email: admin.userDetails.email,
+    name: "",
+    email: "",
   });
 
   const { name, email } = formData;
@@ -41,9 +41,12 @@ const UserInfo = ({ getUserById, admin }) => {
           <input
             className='register-input'
             type='text'
-            placeholder='Name'
+            placeholder={admin.userDetails.name}
             name='name'
             value={name}
+            onClick={(e) => {
+              e.target.value = e.target.placeholder;
+            }}
             onChange={(e) => onChange(e)}
             required
           />
@@ -51,9 +54,12 @@ const UserInfo = ({ getUserById, admin }) => {
           <input
             className='register-input'
             type='text'
-            placeholder='Email'
+            placeholder={admin.userDetails.email}
             name='email'
             value={email}
+            onClick={(e) => {
+              e.target.value = e.target.placeholder;
+            }}
             onChange={(e) => onChange(e)}
             required
           />
