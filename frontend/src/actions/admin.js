@@ -1,11 +1,15 @@
 import axios from "axios";
 import {
-  GET_ALL_PRODUCT,
-  GET_ALL_PRODUCT_FAIL,
+  ADMIN_GET_ALL_PRODUCT_FAIL,
+  ADMIN_GET_ALL_PRODUCT_SUCCESS,
+  ADMIN_GET_PRODUCT_BY_ID_FAIL,
+  ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
+  ADMIN_PRODUCT_CREATE_FAIL,
+  ADMIN_PRODUCT_CREATE_SUCCESS,
+  ADMIN_PRODUCT_UPDATE_FAIL,
+  ADMIN_PRODUCT_UPDATE_SUCCESS,
   GET_ALL_USERS_FAIL,
   GET_ALL_USERS_SUCCESS,
-  GET_PRODUCT_BY_ID_FAIL,
-  GET_PRODUCT_BY_ID_SUCCESS,
   GET_USER_BY_ID_FAIL,
   GET_USER_BY_ID_SUCCESS,
 } from "./types";
@@ -37,7 +41,7 @@ export const getUserById = (userId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log("getUserByIdFail. --admin error");
+    console.log("get user by id fail. --admin error");
 
     dispatch({
       type: GET_USER_BY_ID_FAIL,
@@ -48,16 +52,15 @@ export const getUserById = (userId) => async (dispatch) => {
 // get all products
 export const getAllProducts = () => async (dispatch) => {
   try {
-    const res = await axios.get("/api/admin/products");
-
+    const res = await axios.get("/api/product");
     dispatch({
-      type: GET_ALL_PRODUCT,
+      type: ADMIN_GET_ALL_PRODUCT_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
-    console.log("getAllProductFail. --admin error");
+    console.log("get all product fail. --admin error");
     dispatch({
-      type: GET_ALL_PRODUCT_FAIL,
+      type: ADMIN_GET_ALL_PRODUCT_FAIL,
     });
   }
 };
@@ -65,18 +68,83 @@ export const getAllProducts = () => async (dispatch) => {
 // get Product by id
 export const getProductById = (productId) => async (dispatch) => {
   try {
-    const res = await axios.get(`/api/admin/products/${productId}`);
+    const res = await axios.get(`/api/product/${productId}`);
 
     dispatch({
-      type: GET_PRODUCT_BY_ID_SUCCESS,
+      type: ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
     console.log(err.message);
-    console.log("getProductByIdFail. --admin error");
+    console.log("get product by id fail. --admin error");
 
     dispatch({
-      type: GET_PRODUCT_BY_ID_FAIL,
+      type: ADMIN_GET_PRODUCT_BY_ID_FAIL,
     });
   }
 };
+
+// Update product
+export const editProduct =
+  (productId, { name, image, price, description, quantity }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ name, image, price, description, quantity });
+
+    try {
+      const res = await axios.post(`/api/product/${productId}`, body, config);
+
+      dispatch({
+        type: ADMIN_PRODUCT_UPDATE_SUCCESS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err.message);
+      console.log("Update product fail. --admin error");
+
+      dispatch({
+        type: ADMIN_PRODUCT_UPDATE_FAIL,
+      });
+    }
+  };
+
+// Create product
+export const createProduct =
+  ({ name, price, quantity, description, image }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({
+      name,
+      price,
+      quantity,
+      description,
+      image,
+    });
+
+    try {
+      const res = await axios.post(`/api/admin/product`, body, config);
+      console.log(res);
+
+      dispatch({
+        type: ADMIN_PRODUCT_CREATE_SUCCESS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err.message);
+      console.log("Create product fail. --admin error");
+
+      dispatch({
+        type: ADMIN_PRODUCT_CREATE_FAIL,
+      });
+    }
+  };

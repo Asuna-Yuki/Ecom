@@ -1,4 +1,9 @@
 import {
+  ADMIN_GET_ALL_PRODUCT_FAIL,
+  ADMIN_GET_ALL_PRODUCT_SUCCESS,
+  ADMIN_GET_PRODUCT_BY_ID_FAIL,
+  ADMIN_GET_PRODUCT_BY_ID_REQUEST,
+  ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
   GET_ALL_PRODUCT,
   GET_ALL_PRODUCT_FAIL,
   GET_ALL_USERS_FAIL,
@@ -35,14 +40,14 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    case GET_ALL_PRODUCT:
+    case ADMIN_GET_ALL_PRODUCT_SUCCESS:
       return {
         ...state,
         productList: payload,
         loading: false,
       };
 
-    case GET_PRODUCT_BY_ID_SUCCESS:
+    case ADMIN_GET_PRODUCT_BY_ID_SUCCESS:
       return {
         ...state,
         productDetails: payload,
@@ -51,8 +56,8 @@ export default function (state = initialState, action) {
 
     case GET_ALL_USERS_FAIL:
     case GET_USER_BY_ID_FAIL:
-    case GET_ALL_PRODUCT_FAIL:
-    case GET_PRODUCT_BY_ID_FAIL:
+    case ADMIN_GET_ALL_PRODUCT_FAIL:
+    case ADMIN_GET_PRODUCT_BY_ID_FAIL:
       return {
         ...state,
         loading: false,
