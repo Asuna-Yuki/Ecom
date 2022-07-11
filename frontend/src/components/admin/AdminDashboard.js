@@ -13,6 +13,9 @@ const AdminDashboard = ({ admin }) => {
       <Link to={"/admin/productlist"}>
         <h2>PRODUCTS</h2>
       </Link>
+      <Link to={"/admin/product/create"}>
+        <h2>CREATE PRODUCT</h2>
+      </Link>
       <Link to={"/admin/orderlist"}>
         <h2>ORDERS</h2>
       </Link>
