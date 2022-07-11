@@ -2,16 +2,18 @@ import axios from "axios";
 import {
   ADMIN_GET_ALL_PRODUCT_FAIL,
   ADMIN_GET_ALL_PRODUCT_SUCCESS,
+  ADMIN_GET_ALL_USERS_FAIL,
+  ADMIN_GET_ALL_USERS_SUCCESS,
   ADMIN_GET_PRODUCT_BY_ID_FAIL,
   ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
+  ADMIN_GET_USER_BY_ID_FAIL,
+  ADMIN_GET_USER_BY_ID_SUCCESS,
   ADMIN_PRODUCT_CREATE_FAIL,
   ADMIN_PRODUCT_CREATE_SUCCESS,
   ADMIN_PRODUCT_UPDATE_FAIL,
   ADMIN_PRODUCT_UPDATE_SUCCESS,
-  GET_ALL_USERS_FAIL,
-  GET_ALL_USERS_SUCCESS,
-  GET_USER_BY_ID_FAIL,
-  GET_USER_BY_ID_SUCCESS,
+  ADMIN_USER_UPDATE_FAIL,
+  ADMIN_USER_UPDATE_SUCCESS,
 } from "./types";
 
 // get all users
@@ -20,13 +22,13 @@ export const getAllUsers = () => async (dispatch) => {
     const res = await axios.get("/api/admin/users");
 
     dispatch({
-      type: GET_ALL_USERS_SUCCESS,
+      type: ADMIN_GET_ALL_USERS_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
     console.log("getAllUserFail. --admin error");
     dispatch({
-      type: GET_ALL_USERS_FAIL,
+      type: ADMIN_GET_ALL_USERS_FAIL,
     });
   }
 };
@@ -37,17 +39,46 @@ export const getUserById = (userId) => async (dispatch) => {
     const res = await axios.get(`/api/admin/users/${userId}`);
 
     dispatch({
-      type: GET_USER_BY_ID_SUCCESS,
+      type: ADMIN_GET_USER_BY_ID_SUCCESS,
       payload: res.data,
     });
   } catch (err) {
     console.log("get user by id fail. --admin error");
 
     dispatch({
-      type: GET_USER_BY_ID_FAIL,
+      type: ADMIN_GET_USER_BY_ID_FAIL,
     });
   }
 };
+
+// Update user
+export const editUser =
+  (userId, { name, email, isAdmin }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const body = JSON.stringify({ name, email, isAdmin });
+
+    try {
+      const res = await axios.post(`/api/admin/users/${userId}`, body, config);
+
+      dispatch({
+        type: ADMIN_USER_UPDATE_SUCCESS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err.message);
+      console.log("Update user fail. --admin error");
+
+      dispatch({
+        type: ADMIN_USER_UPDATE_FAIL,
+      });
+    }
+  };
 
 // get all products
 export const getAllProducts = () => async (dispatch) => {
