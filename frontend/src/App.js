@@ -19,6 +19,7 @@ import Order from "./components/auth/Order";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import UserList from "./components/admin/UserList";
 import UserInfo from "./components/admin/UserInfo";
+import EditUser from "./components/admin/EditUser";
 import ProductList from "./components/admin/ProductList";
 import ProductInfo from "./components/admin/ProductInfo";
 import EditProduct from "./components/admin/EditProduct";
@@ -67,6 +68,8 @@ const App = () => {
           <Route path='/admin' element={<AdminDashboard />} />
           <Route path='/admin/userlist' element={<UserList />} />
           <Route path='/admin/user/:id' element={<UserInfo />} />
+          <Route path='/admin/user/edit' element={<EditUser />} />
+
           <Route path='/admin/productlist' element={<ProductList />} />
           <Route path='/admin/product/:id' element={<ProductInfo />} />
           <Route path='/admin/product/edit' element={<EditProduct />} />

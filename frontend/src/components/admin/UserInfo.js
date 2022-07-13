@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getUserById } from "../../actions/admin";
+import Loader from "../layouts/Loader";
 
 const UserInfo = ({ getUserById, admin }) => {
   // GEt user by id
@@ -14,58 +15,28 @@ const UserInfo = ({ getUserById, admin }) => {
 
   // get product id from params i.e. url
   const userId = params.id;
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-  });
-
-  const { name, email } = formData;
-
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
   return (
     <div className='main'>
       <Link to='/admin/userlist'>
         <button className='back-btn btn'>Go Back</button>
       </Link>
-      <div className='register'>
-        <h1>Register</h1>
-        <hr></hr>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <h4>Name</h4>
-          <input
-            className='register-input'
-            type='text'
-            placeholder={admin.userDetails.name}
-            name='name'
-            value={name}
-            onClick={(e) => {
-              e.target.value = e.target.placeholder;
-            }}
-            onChange={(e) => onChange(e)}
-            required
-          />
-          <h4>Email</h4>
-          <input
-            className='register-input'
-            type='text'
-            placeholder={admin.userDetails.email}
-            name='email'
-            value={email}
-            onClick={(e) => {
-              e.target.value = e.target.placeholder;
-            }}
-            onChange={(e) => onChange(e)}
-            required
-          />
-          <button className='btn register-btn'>Register</button>
-        </form>
-      </div>
+      <h1>USER DETAILS</h1>
+      {!admin.loading ? (
+        <div>
+          <h2>Name:</h2>
+          <h2>{admin.userDetails.name}</h2>
+          <h2>Price:</h2>
+          <h2>{admin.userDetails.email}</h2>
+          <h2>Access:</h2>
+          <h2>{admin.userDetails.isAdmin ? `Admin` : `Not Admin`}</h2>
+          <Link to='/admin/user/edit'>
+            <button className='btn primary-btn'>EDIT</button>
+          </Link>
+          <button className='btn primary-btn'>DELETE</button>
+        </div>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
