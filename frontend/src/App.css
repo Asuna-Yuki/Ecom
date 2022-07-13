@@ -21,6 +21,7 @@
 
 .main {
   max-width: 1100px;
+  min-height: 100vh;
   margin: auto;
   padding: 1em;
 }
@@ -354,7 +355,16 @@ h4 {
 
 .cart {
   width: 100%;
-  height: 400px;
+  display: flex;
+  min-height: 100vh;
+}
+.cart-card-list {
+  min-height: 100vh;
+  flex: 1 1 70%;
+}
+.cart-card {
+  width: 100%;
+  height: 200px;
   background: var(--lightGrey);
   padding: 1%;
   display: flex;
@@ -408,8 +418,13 @@ h4 {
 }
 
 .cart-input {
-  width: 3.5em;
-  border-radius: 10px;
+  width: 2.5em;
+  font-size: 1.4rem;
+}
+
+.checkout {
+  flex: 1 1 30%;
+  /* background-color: #686060; */
 }
 
 /* cart */
@@ -458,10 +473,11 @@ h4 {
   font-size: 1.5rem;
   background-color: var(--lightGrey);
   height: 50px;
-  width: 100%;
+  width: 98%;
   padding: 1em;
   display: flex;
   align-items: center;
+  margin: 1em auto;
 }
 
 .alert-danger {
@@ -525,9 +541,6 @@ footer a:hover {
   .main {
     max-width: 900px;
     margin: auto;
-  }
-  .cart {
-    height: 300px;
   }
 }
 
@@ -615,9 +628,6 @@ footer a:hover {
     width: 100%;
     border-radius: 10px;
   }
-  .cart {
-    height: 250px;
-  }
   .cart-card-des h1 {
     font-size: 2.2rem;
   }
@@ -662,9 +672,6 @@ footer a:hover {
   .register {
     width: 100%;
   }
-  .cart {
-    height: 200px;
-  }
   .cart-card-des h1 {
     font-size: 2rem;
   }
@@ -673,5 +680,19 @@ footer a:hover {
   }
   .cart-card-des {
     font-size: 1.2rem;
+  }
+  .cart-card {
+    height: 120px;
+  }
+  .cart {
+    display: block;
+    min-height: 50vh;
+  }
+  .cart-card-list {
+    min-height: 50vh;
+  }
+  .cart-card-des-menu input {
+    width: 2em;
+    height: 1.5em;
   }
 }
