@@ -28,7 +28,7 @@ const CartCard = ({ cartItem, removeItemInCart }) => {
             onChange={(e) => onChange(e)}
           ></input>
           <a href='#!' onClick={() => removeItemInCart(cartItem._id)}>
-            Remove
+            <i className='fa-solid fa-trash'></i>
           </a>
         </div>{" "}
       </div>

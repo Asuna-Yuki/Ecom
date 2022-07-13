@@ -58,7 +58,7 @@ const Product = ({
           <div className='product-des'>
             <h1>{singleProduct.name}</h1>
             <hr></hr>
-            <p>Price - {singleProduct.price}</p>
+            <p>Price - ₹{singleProduct.price}</p>
             <hr></hr>
             <p>{singleProduct.description}</p>
           </div>
@@ -68,7 +68,7 @@ const Product = ({
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Price:</p>
-                <p>{singleProduct.price}</p>
+                <p>₹{singleProduct.price}</p>
               </div>
             </div>
             <div className='product-detail-item'>

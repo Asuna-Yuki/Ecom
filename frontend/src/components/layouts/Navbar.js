@@ -20,7 +20,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     user && !user.isAdmin ? (
       <ul className='navlinks'>
         <li>
-          <Link to='/cart'>Cart</Link>
+          <Link to='/cart'>
+            <i className='fa-solid fa-cart-shopping' />
+          </Link>
         </li>
         <li>
           <a onClick={logout} href='#!'>
@@ -34,7 +36,10 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           <Link to='/admin'>Admin</Link>
         </li>
         <li>
-          <Link to='/cart'>Cart</Link>
+          <Link to='/cart'>
+            <i className='fa-solid fa-cart-shopping' />
+            <span> </span>Cart
+          </Link>
         </li>
         <li>
           <a onClick={logout} href='#!'>
