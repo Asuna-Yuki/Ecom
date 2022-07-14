@@ -15,6 +15,15 @@ import Address from "./components/auth/Address";
 import Payment from "./components/auth/Payment";
 import Checkout from "./components/auth/Checkout";
 import Order from "./components/auth/Order";
+// Admin
+import AdminDashboard from "./components/admin/AdminDashboard";
+import UserList from "./components/admin/UserList";
+import UserInfo from "./components/admin/UserInfo";
+import EditUser from "./components/admin/EditUser";
+import ProductList from "./components/admin/ProductList";
+import ProductInfo from "./components/admin/ProductInfo";
+import EditProduct from "./components/admin/EditProduct";
+import CreateProduct from "./components/admin/CreateProduct";
 
 // Redux
 import { Provider } from "react-redux";
@@ -56,6 +65,15 @@ const App = () => {
           <Route path='/payment' element={<Payment />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order/:id' element={<Order />} />
+          <Route path='/admin' element={<AdminDashboard />} />
+          <Route path='/admin/userlist' element={<UserList />} />
+          <Route path='/admin/user/:id' element={<UserInfo />} />
+          <Route path='/admin/user/edit' element={<EditUser />} />
+
+          <Route path='/admin/productlist' element={<ProductList />} />
+          <Route path='/admin/product/:id' element={<ProductInfo />} />
+          <Route path='/admin/product/edit' element={<EditProduct />} />
+          <Route path='/admin/product/create' element={<CreateProduct />} />
         </Routes>
         <Footer />
       </Router>

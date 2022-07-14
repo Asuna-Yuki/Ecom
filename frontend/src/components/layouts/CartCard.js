@@ -10,13 +10,13 @@ const CartCard = ({ cartItem, removeItemInCart }) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   return (
-    <div className='cart'>
+    <div className='cart-card'>
       <div className='cart-card-img'>
         <img className='image' src={cartItem.image} alt=''></img>
       </div>
       <div className='cart-card-des'>
         <h1>{cartItem.name}</h1>
-        <p>{cartItem.price}</p>
+        <p>₹{cartItem.price}</p>
         <div className='cart-card-des-menu'>
           <input
             type='number'
@@ -28,9 +28,9 @@ const CartCard = ({ cartItem, removeItemInCart }) => {
             onChange={(e) => onChange(e)}
           ></input>
           <a href='#!' onClick={() => removeItemInCart(cartItem._id)}>
-            Remove
+            <i className='fa-solid fa-trash'></i>
           </a>
-        </div>
+        </div>{" "}
       </div>
     </div>
   );

@@ -5,8 +5,14 @@ import PropTypes from "prop-types";
 import Review from "./Review";
 import { getProductById } from "../../actions/product";
 import { addItemInCart } from "../../actions/cart";
+import { setAlert } from "../../actions/alert";
 
-const Product = ({ singleProduct, getProductById, addItemInCart }) => {
+const Product = ({
+  singleProduct,
+  getProductById,
+  addItemInCart,
+  setAlert,
+}) => {
   // GEt product by id
   useEffect(() => {
     getProductById(productId);
@@ -28,9 +34,11 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
       // add product to cart with data.input
       singleProduct.quantity = parseInt(data.input);
       addItemInCart(singleProduct);
+      setAlert("Item added to cart.", "success");
     } else {
       // not enough produck in stock
       console.log("NOT ENOUGH PRODUCT IN STOCK.");
+      setAlert("Not enough product in Stock.", "danger");
     }
   };
 
@@ -50,7 +58,7 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
           <div className='product-des'>
             <h1>{singleProduct.name}</h1>
             <hr></hr>
-            <p>Price - {singleProduct.price}</p>
+            <p>Price - ₹{singleProduct.price}</p>
             <hr></hr>
             <p>{singleProduct.description}</p>
           </div>
@@ -60,7 +68,7 @@ const Product = ({ singleProduct, getProductById, addItemInCart }) => {
             <div className='product-detail-item'>
               <div className='row'>
                 <p>Price:</p>
-                <p>{singleProduct.price}</p>
+                <p>₹{singleProduct.price}</p>
               </div>
             </div>
             <div className='product-detail-item'>
@@ -112,12 +120,15 @@ Product.propTypes = {
   singleProduct: PropTypes.object.isRequired,
   getProductById: PropTypes.func.isRequired,
   addItemInCart: PropTypes.func.isRequired,
+  setAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   singleProduct: state.product.singleProduct,
 });
 
-export default connect(mapStateToProps, { getProductById, addItemInCart })(
-  Product
-);
+export default connect(mapStateToProps, {
+  getProductById,
+  addItemInCart,
+  setAlert,
+})(Product);

@@ -24,11 +24,10 @@ const Payment = ({ auth: { isAuthenticated, loading }, paymentMethod }) => {
         <button className='back-btn btn'>Go Back</button>
       </Link>
       <h1>PAYMENT METHOD</h1>
-      <br />
-      <br />
-      <h2>SELECT PAYMENT METHOD</h2>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <h3>Paypal</h3>
+      <hr />
+      <form className='form' onSubmit={(e) => onSubmit(e)}>
+        <br />
+        <label htmlFor='paylal'>Paypal</label>
         <input
           type='radio'
           name='paymentMethod'
@@ -36,7 +35,7 @@ const Payment = ({ auth: { isAuthenticated, loading }, paymentMethod }) => {
           onChange={(e) => setMethod(e.target.value)}
         />
         <br />
-        <h3>Google Pay</h3>
+        <label htmlFor='googlePay'>Google Pay</label>
         <input
           type='radio'
           name='paymentMethod'
@@ -44,7 +43,7 @@ const Payment = ({ auth: { isAuthenticated, loading }, paymentMethod }) => {
           onChange={(e) => setMethod(e.target.value)}
         />
         <br />
-        <h3>Cash on Delivery</h3>
+        <label htmlFor='cod'>Cash On Delivery</label>
         <input
           type='radio'
           name='paymentMethod'
@@ -52,7 +51,7 @@ const Payment = ({ auth: { isAuthenticated, loading }, paymentMethod }) => {
           onChange={(e) => setMethod(e.target.value)}
         />
         <br />
-        <button className='btn register-btn'>Proceed to Checkout</button>
+        <button className='btn register-btn'>Continue</button>
       </form>
     </div>
   );

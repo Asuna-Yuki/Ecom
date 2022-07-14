@@ -17,7 +17,6 @@ export default function (state = initialState, action) {
     case ORDER_SUCCESS:
       return {
         ...state,
-        orderLoading: false,
         lastOrder: payload.order,
         success: true,
       };
@@ -32,6 +31,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         orderDetail: payload,
+        orderLoading: false,
       };
 
     default:
