@@ -21,9 +21,10 @@ const Checkout = ({
 
   let shippingCost = 100;
   let totalCost = 0;
-  cartItems.forEach((item) => {
-    return (totalCost += item.quantity * item.price);
-  });
+  !cartLoading &&
+    cartItems.forEach((item) => {
+      return (totalCost += item.quantity * item.price);
+    });
 
   const onClick = () => {
     createOrder({ cartItems, shippingAddress, paymentMethod, user });

@@ -22,6 +22,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         <li>
           <Link to='/cart'>
             <i className='fa-solid fa-cart-shopping' />
+            <span> </span>Cart
           </Link>
         </li>
         <li>
