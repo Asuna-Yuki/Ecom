@@ -422,12 +422,116 @@ h4 {
   font-size: 1.4rem;
 }
 
-.checkout {
+.cart-checkout {
   flex: 1 1 30%;
   /* background-color: #686060; */
 }
 
+.cart-subtotal {
+  padding: 0 2%;
+  flex: 1 1 30%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  max-height: 300px;
+}
+.cart-subtotal-item {
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.321);
+  border-bottom: 0px;
+}
+.cart-subtotal-item:nth-last-child(1) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.321);
+}
+
 /* cart */
+
+/* form */
+.form {
+  margin: 0 auto;
+}
+.form label {
+  font-size: 2rem;
+  font-weight: 500;
+  display: block;
+  margin-top: 0.5em;
+}
+.form button {
+  width: 10em;
+  margin-top: 1em;
+}
+.form input[type="text"],
+input[type="number"] {
+  width: 100%;
+}
+
+/* checkout */
+.checkout {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.checkout-details {
+  font-size: 1rem;
+  flex: 1 1 70%;
+}
+.checkout-details h1 {
+  font-size: 2.5rem;
+  padding: 0.5em;
+}
+.checkout-details p {
+  font-size: 1.5rem;
+  padding: 0em 1em;
+}
+.checkout-details hr {
+  margin-top: 1em;
+}
+.checkout-card {
+  display: grid;
+  background-color: #2b282809;
+  grid-template-columns: 0.3fr 1fr 1fr;
+  gap: 1em;
+  height: 100px;
+  margin-top: 0.5em;
+}
+.checkout-card-img {
+  height: 100%;
+  overflow: hidden;
+}
+.checkout-card-info {
+  font-size: 2rem;
+  height: 100%;
+}
+.checkout-subtotal {
+  padding: 0 2%;
+  flex: 1 1 30%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  max-height: 300px;
+}
+.checkout-subtotal-item {
+  font-size: 1.5rem;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.321);
+  border-bottom: 0px;
+}
+.checkout-subtotal-item:nth-last-child(1) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.321);
+}
+
+/* order */
+.order {
+  width: 100%;
+}
 /* admin product */
 
 .admin-column {

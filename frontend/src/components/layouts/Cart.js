@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const Cart = ({ isAuthenticated, cart }) => {
   let totalCost = 0;
   cart.forEach((cartItem) => {
-    totalCost += cartItem.price;
+    totalCost += cartItem.price * cartItem.quantity;
   });
 
   return (
@@ -26,37 +26,21 @@ const Cart = ({ isAuthenticated, cart }) => {
             <div>cart is empty</div>
           )}
         </div>
-        <div className='checkout'>
-          <div className='product-column-3'>
-            <div className='product-detail'>
-              <div className='product-detail-item'>
-                <div className='row'>
-                  <h1>SUBTOTAL</h1>
-                </div>
-              </div>
-              <div className='product-detail-item'>
-                <div className='row'>
-                  <h2>Items: {cart.length}</h2>
-                </div>
-              </div>
-              <div className='product-detail-item'>
-                <div className='row'>
-                  <h2>₹ {totalCost}</h2>
-                </div>
-              </div>
-              <div className='product-detail-item'>
-                <div className='row'>
-                  {isAuthenticated ? (
-                    <Link to='/address'>
-                      <button className='btn'>CheckOut</button>
-                    </Link>
-                  ) : (
-                    <Link to='/login'>
-                      <button className='btn'>CheckOut</button>
-                    </Link>
-                  )}
-                </div>
-              </div>
+        <div className='cart-checkout'>
+          <div className='cart-subtotal'>
+            <div className='cart-subtotal-item'>ORDER SUMMARY</div>
+            <div className='cart-subtotal-item'>Item: {cart.length}</div>
+            <div className='cart-subtotal-item'>Total Cost: ₹{totalCost}</div>
+            <div className='cart-subtotal-item'>
+              {isAuthenticated ? (
+                <Link to='/address'>
+                  <button className='btn'>CheckOut</button>
+                </Link>
+              ) : (
+                <Link to='/login'>
+                  <button className='btn'>CheckOut</button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

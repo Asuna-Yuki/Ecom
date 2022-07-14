@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getOrderById } from "../../actions/order";
+import Loader from "../layouts/Loader";
+import CheckoutCard from "../auth/CheckoutCard";
 
 const Order = ({
   auth: { loading, isAuthenticated, user },
@@ -27,18 +29,37 @@ const Order = ({
         <Link to='/'>
           <button className='back-btn btn'>Go Back</button>
         </Link>
-        <h1>{orderId}</h1>
-        <hr />
-        <h2>Name : {user.name}</h2>
-        <h3>Email : {user.email}</h3>
-        <hr />
-        <p>
-          Address :{" "}
-          {!orderLoading ? orderDetail.shippingAddress.address : `spinner`}
-        </p>
-        <hr />
-        <p>Payment : {!orderLoading ? orderDetail.paymentMethod : `spinner`}</p>
-        <h4>{!orderLoading ? orderDetail.orderItems[0].name : `spinner`}</h4>
+        <h1>Order Id: {orderId}</h1>
+
+        <div className='order'>
+          <div className='order-head'>SHIPPING</div>
+          <div className='order-content'>Name: {user.name}</div>
+          <div className='order-content'>Email: {user.email}</div>
+          {!orderLoading ? (
+            <div className='order-content'>
+              Address: {orderDetail.shippingAddress.address},{" "}
+              {orderDetail.shippingAddress.city},{" "}
+              {orderDetail.shippingAddress.state},{" "}
+              {orderDetail.shippingAddress.pincode}
+            </div>
+          ) : (
+            <Loader />
+          )}
+          <div className='order-box'>Not Delivered</div>
+          <div className='order-head'>PAYMENT</div>
+          <div className='order-content'>Method: {user.name}</div>
+          <div className='order-box'>Not Payed</div>
+          <div className='order-head'>ORDER ITEMS</div>
+          {!orderLoading ? (
+            <div className='order-content'>
+              {orderDetail.orderItems.map((item) => (
+                <CheckoutCard key={item._id} item={item} />
+              ))}
+            </div>
+          ) : (
+            <Loader />
+          )}
+        </div>
       </div>
     );
   }
