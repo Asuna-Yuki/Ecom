@@ -66,11 +66,14 @@ input::placeholder {
 .image {
   max-width: 100%;
 }
+a {
+  text-decoration: none;
+}
 
 /* nav */
 
 li,
-a,
+header a,
 .search-btn {
   color: var(--light-font-color);
   text-decoration: none;
@@ -294,7 +297,7 @@ p {
 }
 
 .review p,
-h2 {
+.review h2 {
   font-size: 1.6rem;
   padding: 1%;
   color: var(--black);
@@ -568,18 +571,16 @@ input[type="number"] {
   border: 1px solid rgba(168, 0, 0, 0.752);
   color: white;
 }
-/* admin product */
+/* admin */
 
 .admin-column {
-  /* display: flex; */
   margin-top: 1em;
   display: grid;
-  grid-template-columns: 1.5fr 0.7fr 1fr 0.5fr 0.5fr;
+  grid-template-columns: 1.1fr 0.5fr 0.7fr 0.5fr 0.2fr;
   gap: 0.5em;
 }
 
 .admin-column .info {
-  /* flex-basis: 30%; */
   display: flex;
   align-items: center;
   height: 50px;
@@ -587,25 +588,53 @@ input[type="number"] {
   margin-left: 0.5em;
   background: var(--lightGrey);
 }
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+.admin-dashboard-list {
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  min-height: 8em;
+  background-color: #3a383819;
+  border-radius: 5%;
+}
+.admin-dashboard-list h2 {
+  font-size: inherit;
+  color: var(--black);
+}
+.admin-dashboard-list:hover {
+  background-color: #3a38384c;
+  transition: all 0.3s ease 0s;
+}
 .info {
   font-size: 1.2em;
   font-weight: 500;
-  flex-basis: 25%;
 }
-.info:nth-child(1) {
-  flex-basis: 30%;
+.info i {
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.408);
 }
-.info:nth-child(2) {
-  flex-basis: 30%;
+.info i:hover {
+  color: rgba(0, 0, 0, 0.673);
+  transition: all 0.3s ease 0s;
 }
-.info:nth-child(3) {
-  flex-basis: 20%;
+
+.admin-user-info,
+.admin-product-info {
+  font-size: 2.2rem;
 }
-.info:nth-child(4) {
-  flex-basis: 10%;
-}
-.info:nth-child(5) {
-  flex-basis: 10%;
+
+.admin-user-info div,
+.admin-product-info div {
+  padding: 1em;
+  font-weight: 200;
+  margin-top: 0.5em;
+  background-color: #0000001e;
 }
 
 /* alert */
@@ -851,5 +880,12 @@ footer a:hover {
     gap: 0.4em;
     height: 100px;
     margin-top: 0.5em;
+  }
+  .admin-dashboard {
+    grid-template-columns: 1fr;
+  }
+  .admin-dashboard-list {
+    font-size: 2rem;
+    min-height: 5em;
   }
 }
