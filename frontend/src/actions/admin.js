@@ -1,9 +1,13 @@
 import axios from "axios";
 import {
+  ADMIN_GET_ALL_ORDERS_FAIL,
+  ADMIN_GET_ALL_ORDERS_SUCCESS,
   ADMIN_GET_ALL_PRODUCT_FAIL,
   ADMIN_GET_ALL_PRODUCT_SUCCESS,
   ADMIN_GET_ALL_USERS_FAIL,
   ADMIN_GET_ALL_USERS_SUCCESS,
+  ADMIN_GET_ORDER_BY_ID_FAIL,
+  ADMIN_GET_ORDER_BY_ID_SUCCESS,
   ADMIN_GET_PRODUCT_BY_ID_FAIL,
   ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
   ADMIN_GET_USER_BY_ID_FAIL,
@@ -179,3 +183,67 @@ export const createProduct =
       });
     }
   };
+
+// get all order
+export const getAllOrders = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/admin/orders");
+
+    dispatch({
+      type: ADMIN_GET_ALL_ORDERS_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log("get All Order Fail. --admin error");
+    dispatch({
+      type: ADMIN_GET_ALL_ORDERS_FAIL,
+    });
+  }
+};
+
+// get user by id
+export const getOrderById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/admin/orders/${userId}`);
+
+    dispatch({
+      type: ADMIN_GET_ORDER_BY_ID_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log("get order by id fail. --admin error");
+
+    dispatch({
+      type: ADMIN_GET_ORDER_BY_ID_FAIL,
+    });
+  }
+};
+
+// // Update user
+// export const editUser =
+//   (userId, { name, email, isAdmin }) =>
+//   async (dispatch) => {
+//     const config = {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     };
+
+//     const body = JSON.stringify({ name, email, isAdmin });
+
+//     try {
+//       const res = await axios.post(`/api/admin/users/${userId}`, body, config);
+
+//       dispatch({
+//         type: ADMIN_USER_UPDATE_SUCCESS,
+//         payload: res.data,
+//       });
+//     } catch (err) {
+//       console.log(err.message);
+//       console.log("Update user fail. --admin error");
+
+//       dispatch({
+//         type: ADMIN_USER_UPDATE_FAIL,
+//       });
+//     }
+//   };

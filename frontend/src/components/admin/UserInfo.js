@@ -22,17 +22,24 @@ const UserInfo = ({ getUserById, admin }) => {
       </Link>
       <h1>USER DETAILS</h1>
       {!admin.loading ? (
-        <div>
-          <h2>Name:</h2>
-          <h2>{admin.userDetails.name}</h2>
-          <h2>Price:</h2>
-          <h2>{admin.userDetails.email}</h2>
-          <h2>Access:</h2>
-          <h2>{admin.userDetails.isAdmin ? `Admin` : `Not Admin`}</h2>
-          <Link to='/admin/user/edit'>
-            <button className='btn primary-btn'>EDIT</button>
-          </Link>
-          <button className='btn primary-btn'>DELETE</button>
+        <div className='admin-user-info'>
+          <div>
+            <strong>Name: </strong>
+            {admin.userDetails.name}
+          </div>
+          <div>
+            <strong>Email:</strong> {admin.userDetails.email}
+          </div>
+          <div>
+            <strong>Access:</strong>{" "}
+            {admin.userDetails.isAdmin ? `Admin` : `Not Admin`}
+          </div>
+          <div>
+            <Link to='/admin/user/edit'>
+              <button className='btn primary-btn'>EDIT</button>
+            </Link>
+            <button className='btn primary-btn'>DELETE</button>
+          </div>
         </div>
       ) : (
         <Loader />

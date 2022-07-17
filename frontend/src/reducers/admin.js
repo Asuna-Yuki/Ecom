@@ -1,8 +1,12 @@
 import {
+  ADMIN_GET_ALL_ORDERS_FAIL,
+  ADMIN_GET_ALL_ORDERS_SUCCESS,
   ADMIN_GET_ALL_PRODUCT_FAIL,
   ADMIN_GET_ALL_PRODUCT_SUCCESS,
   ADMIN_GET_ALL_USERS_FAIL,
   ADMIN_GET_ALL_USERS_SUCCESS,
+  ADMIN_GET_ORDER_BY_ID_FAIL,
+  ADMIN_GET_ORDER_BY_ID_SUCCESS,
   ADMIN_GET_PRODUCT_BY_ID_FAIL,
   ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
   ADMIN_GET_USER_BY_ID_FAIL,
@@ -14,6 +18,8 @@ const initialState = {
   userDetails: {},
   productList: [],
   productDetails: {},
+  orderList: [],
+  orderDetails: {},
   loading: true,
 };
 
@@ -49,10 +55,26 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
+    case ADMIN_GET_ALL_ORDERS_SUCCESS:
+      return {
+        ...state,
+        orderList: payload,
+        loading: false,
+      };
+
+    case ADMIN_GET_ORDER_BY_ID_SUCCESS:
+      return {
+        ...state,
+        orderDetails: payload,
+        loading: false,
+      };
+
     case ADMIN_GET_ALL_USERS_FAIL:
     case ADMIN_GET_USER_BY_ID_FAIL:
     case ADMIN_GET_ALL_PRODUCT_FAIL:
     case ADMIN_GET_PRODUCT_BY_ID_FAIL:
+    case ADMIN_GET_ALL_ORDERS_FAIL:
+    case ADMIN_GET_ORDER_BY_ID_FAIL:
       return {
         ...state,
         loading: false,

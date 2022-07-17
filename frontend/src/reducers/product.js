@@ -3,6 +3,7 @@ import {
   GET_ALL_PRODUCT,
   GET_ALL_PRODUCT_FAIL,
   GET_PRODUCT_BY_ID_SUCCESS,
+  GET_PRODUCT_BY_ID_REQUEST,
 } from "../actions/types";
 
 const productInitialState = { products: [], singleProduct: {}, loading: true };
@@ -18,7 +19,10 @@ export default function (state = productInitialState, action) {
       return { ...state, loading: false };
 
     case CLEAR_PRODUCTS:
-      return { ...state, products: [], singleProduct: {} };
+      return { ...state, products: [], singleProduct: {}, loading: true };
+
+    case GET_PRODUCT_BY_ID_REQUEST:
+      return { ...state, loading: true };
 
     case GET_PRODUCT_BY_ID_SUCCESS:
       return { ...state, singleProduct: payload, loading: false };

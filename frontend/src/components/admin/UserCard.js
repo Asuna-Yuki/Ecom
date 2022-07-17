@@ -12,7 +12,9 @@ const UserCard = ({ user }) => {
       <span className='info'>{user.isAdmin ? `Admin` : `Not Admin`}</span>
       <span className='info'>
         <Link to={`/admin/user/${user._id}`}>
-          <button className='btn' />
+          <i className='fa-solid fa-angles-right' />
+
+          {/* <button className='btn' /> */}
         </Link>
       </span>
     </div>

@@ -7,18 +7,20 @@ const AdminDashboard = ({ admin }) => {
   return (
     <div className='main'>
       <h1>ADMIN DASHBOARD</h1>
-      <Link to={"/admin/userlist"}>
-        <h2>USERS</h2>
-      </Link>
-      <Link to={"/admin/productlist"}>
-        <h2>PRODUCTS</h2>
-      </Link>
-      <Link to={"/admin/product/create"}>
-        <h2>CREATE PRODUCT</h2>
-      </Link>
-      <Link to={"/admin/orderlist"}>
-        <h2>ORDERS</h2>
-      </Link>
+      <div className='admin-dashboard'>
+        <Link className='admin-dashboard-list' to={"/admin/userlist"}>
+          <h2>USERS</h2>
+        </Link>
+        <Link className='admin-dashboard-list' to={"/admin/productlist"}>
+          <h2>PRODUCTS</h2>
+        </Link>
+        <Link className='admin-dashboard-list' to={"/admin/product/create"}>
+          <h2>CREATE PRODUCT</h2>
+        </Link>
+        <Link className='admin-dashboard-list' to={"/admin/orderlist"}>
+          <h2>ORDERS</h2>
+        </Link>
+      </div>
     </div>
   );
 };
