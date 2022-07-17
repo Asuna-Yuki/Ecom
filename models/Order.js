@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const OrderSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    required: true,
+    ref: "user",
   },
   shippingAddress: {
     type: Object,
@@ -17,6 +18,10 @@ const OrderSchema = new mongoose.Schema({
     type: Array,
     required: true,
   },
+  // totalCost: {
+  //   type: Number,
+  //   required: true,
+  // },
 });
 
 module.exports = Order = mongoose.model("order", OrderSchema);

@@ -5,16 +5,13 @@ import PropTypes from "prop-types";
 import { getUserById } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const OrderCard = ({ order, getUserById, admin }) => {
-  // useEffect(() => {
-  //   getUserById(order.user);
-  // }, []);
-
+const OrderCard = ({ order }) => {
   return !order.loading ? (
     <div className='admin-column'>
       <span className='info'>{order._id}</span>
       <span className='info'>{order.user.name}</span>
-      <span className='info'>{}</span>
+      <span className='info'>{`not delivered`}</span>
+      <span className='info'>{`total ammount`}</span>
       <span className='info'>
         <Link to={`/admin/order/${order._id}`}>
           <i className='fa-solid fa-angles-right' />

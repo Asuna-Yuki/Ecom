@@ -6,6 +6,7 @@ import {
   CLEAR_PRODUCTS,
   GET_PRODUCT_BY_ID_SUCCESS,
   GET_PRODUCT_BY_ID_FAIL,
+  GET_PRODUCT_BY_ID_REQUEST,
 } from "./types";
 
 // get all products
@@ -33,6 +34,9 @@ export const getAllProducts = () => async (dispatch) => {
 // get product by id
 export const getProductById = (productId) => async (dispatch) => {
   try {
+    dispatch({
+      type: GET_PRODUCT_BY_ID_REQUEST,
+    });
     const res = await axios.get(`/api/product/${productId}`);
     dispatch({
       type: GET_PRODUCT_BY_ID_SUCCESS,
