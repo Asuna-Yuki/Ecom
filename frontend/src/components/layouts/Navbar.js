@@ -50,36 +50,28 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       </ul>
     );
   return (
-    <header>
+    <header className='response'>
       <Link id='logo' to='/'>
         PROLOGO
       </Link>
+      <div className='search'>
+        <input
+          type='text'
+          placeholder='Search products...'
+          className='search-input'
+        />
 
-      <input
-        type='text'
-        placeholder='Search products...'
-        className='search-input'
-      ></input>
-
-      <Link className='cta' to='/search'>
-        <button className='search-btn btn'>Search</button>
-      </Link>
-
-      <nav>
-        {!loading && (
-          <Fragment>{isAuthenticated ? authLink : guestLink}</Fragment>
-        )}
-        <div className='navlinks-drop-down noActionDiv hidden' id='noActionDiv'>
-          <div className='drop-down hidden noActionDiv' id='noActionDiv'>
-            <div className='drop-down-menu' id='noActionDiv'>
-              <Link to='/cart'>Cart</Link>
-            </div>
-            <div className='drop-down-menu' id='noActionDiv'>
-              <Link to='/login'>Sign in</Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+        <Link className='cta' to='/search'>
+          <button className='search-btn btn'>Search</button>
+        </Link>
+      </div>
+      <label className='nav-toggle-lable' htmlFor='nav-toggle'>
+        <span />
+        <span />
+        <span />
+      </label>
+      <input type='checkbox' className='nav-toggle' id='nav-toggle' />
+      <nav>{!loading && (isAuthenticated ? authLink : guestLink)}</nav>
     </header>
   );
 };
