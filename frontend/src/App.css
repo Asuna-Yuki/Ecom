@@ -533,6 +533,10 @@ input[type="checkbox"] {
   font-size: 2rem;
   height: 100%;
 }
+.checkout-card-info h2 {
+  font-size: 2rem;
+  font-weight: 400;
+}
 .checkout-subtotal,
 .order-subtotal {
   padding: 0 2%;
@@ -627,7 +631,7 @@ input[type="checkbox"] {
   gap: 0.5em;
 }
 .admin-order {
-  grid-template-columns: minmax(1fr auto) 1fr 0.5fr 0.7fr 1fr 0.5fr 0.2fr;
+  grid-template-columns: minmax(max-content, 1fr) 0.5fr 0.5fr 0.5fr 0.7fr 0.7fr 0.2fr;
 }
 
 .admin-column .info {
@@ -989,12 +993,9 @@ footer a:hover {
     display: block;
   }
   .checkout-card {
-    display: grid;
-    background-color: #2b282809;
     grid-template-columns: 0.5fr 0.5fr 1fr;
     gap: 0.4em;
-    height: 100px;
-    margin-top: 0.5em;
+    height: 80px;
   }
   .admin-dashboard {
     grid-template-columns: 1fr;
@@ -1079,5 +1080,10 @@ footer a:hover {
 
   .search-input-phone {
     display: block;
+  }
+
+  .checkout-card-info h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
   }
 }

@@ -18,7 +18,7 @@ const OrderCard = ({ order, admin }) => {
         {order.createdAt && order.createdAt.split("T")[0]}
       </span>
       <span className='info'>
-        {order.updatedAt && order.updatedAt.split("T")[0]}
+        {order.orderItems && order.orderItems.length}
       </span>
       <span className='info'>
         <Link to={`/admin/order/${order._id}`}>

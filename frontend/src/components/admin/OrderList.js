@@ -32,7 +32,7 @@ const OrderList = ({ getAllOrders, admin }) => {
           <h2>Order Date</h2>
         </div>
         <div className='info'>
-          <h2>Date</h2>
+          <h2>Order Items</h2>
         </div>
         <div className='info'>
           <h2></h2>
