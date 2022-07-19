@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
       <span className='info'>{product.quantity}</span>
       <span className='info'>
         <Link to={`/admin/product/${product._id}`}>
-          <button className='btn' />
+          <i className='fa-solid fa-angles-right' />
         </Link>
       </span>
     </div>

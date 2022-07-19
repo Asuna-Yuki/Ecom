@@ -11,16 +11,11 @@ const OrderList = ({ getAllOrders, admin }) => {
   }, []);
   return (
     <div className='main'>
-      <input
-        className='search-input-phone hidden'
-        type='text'
-        placeholder='Search...'
-      />
       <Link to='/admin'>
         <button className='back-btn btn'>Go Back</button>
       </Link>
       <h1>ORDERS</h1>
-      <div className='admin-column'>
+      <div className='admin-column admin-order'>
         <div className='info'>
           <h2>Id</h2>
         </div>
@@ -28,10 +23,16 @@ const OrderList = ({ getAllOrders, admin }) => {
           <h2>Name</h2>
         </div>
         <div className='info'>
-          <h2>Email</h2>
+          <h2>Delivery</h2>
         </div>
         <div className='info'>
-          <h2>Admin</h2>
+          <h2>Bill</h2>
+        </div>
+        <div className='info'>
+          <h2>Order Date</h2>
+        </div>
+        <div className='info'>
+          <h2>Date</h2>
         </div>
         <div className='info'>
           <h2></h2>

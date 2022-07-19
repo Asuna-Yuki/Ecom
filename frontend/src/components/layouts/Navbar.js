@@ -50,7 +50,7 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       </ul>
     );
   return (
-    <header className='response'>
+    <header>
       <Link id='logo' to='/'>
         PROLOGO
       </Link>

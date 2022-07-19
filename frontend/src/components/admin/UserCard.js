@@ -13,8 +13,6 @@ const UserCard = ({ user }) => {
       <span className='info'>
         <Link to={`/admin/user/${user._id}`}>
           <i className='fa-solid fa-angles-right' />
-
-          {/* <button className='btn' /> */}
         </Link>
       </span>
     </div>

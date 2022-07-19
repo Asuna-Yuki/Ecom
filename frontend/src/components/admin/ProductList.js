@@ -11,11 +11,9 @@ const ProductList = ({ getAllProducts, admin }) => {
   }, []);
   return (
     <div className='main'>
-      <input
-        className='search-input-phone hidden'
-        type='text'
-        placeholder='Search...'
-      />
+      <Link to='/admin'>
+        <button className='back-btn btn'>Go Back</button>
+      </Link>
       <h1>PRODUCTS</h1>
       <div className='admin-column'>
         <div className='info'>

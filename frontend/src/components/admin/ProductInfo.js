@@ -22,21 +22,23 @@ const ProductInfo = ({ getProductById, admin }) => {
       </Link>
       <h1>PRODUCT DETAILS</h1>
       {!admin.loading ? (
-        <div>
-          <h2>Name:</h2>
-          <h2>{admin.productDetails.name}</h2>
-          <h2>Price:</h2>
-          <h2>{admin.productDetails.price}</h2>
-          <h2>Description:</h2>
-          <h2>{admin.productDetails.description}</h2>
-          <h2>Quantity:</h2>
-          <h2>{admin.productDetails.quantity}</h2>
-          <h2>Image:</h2>
-          <h2>{admin.productDetails.image} </h2>
-          <Link to='/admin/product/edit'>
-            <button className='btn primary-btn'>EDIT</button>
-          </Link>
-          <button className='btn primary-btn'>DELETE</button>
+        <div className='admin-user-info'>
+          <div>
+            <strong>Name: </strong>
+            {admin.productDetails.name}
+          </div>
+          <div>
+            <strong>Price:</strong> ₹ {admin.productDetails.price}
+          </div>
+          <div>
+            <strong>Quantity:</strong> {admin.productDetails.quantity}
+          </div>
+          <div>
+            <Link to='/admin/product/edit'>
+              <button className='btn primary-btn'>EDIT</button>
+            </Link>
+            <button className='btn primary-btn'>DELETE</button>
+          </div>
         </div>
       ) : (
         <Loader />

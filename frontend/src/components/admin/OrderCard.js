@@ -5,13 +5,21 @@ import PropTypes from "prop-types";
 import { getUserById } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const OrderCard = ({ order }) => {
-  return !order.loading ? (
-    <div className='admin-column'>
+const OrderCard = ({ order, admin }) => {
+  return !admin.loading ? (
+    <div className='admin-column admin-order'>
       <span className='info'>{order._id}</span>
       <span className='info'>{order.user.name}</span>
-      <span className='info'>{`not delivered`}</span>
-      <span className='info'>{`total ammount`}</span>
+      <span className='info'>
+        {order.isDelivered ? `Delivered` : `Not Delivered`}
+      </span>
+      <span className='info'>{order.totalCost}</span>
+      <span className='info'>
+        {order.createdAt && order.createdAt.split("T")[0]}
+      </span>
+      <span className='info'>
+        {order.updatedAt && order.updatedAt.split("T")[0]}
+      </span>
       <span className='info'>
         <Link to={`/admin/order/${order._id}`}>
           <i className='fa-solid fa-angles-right' />

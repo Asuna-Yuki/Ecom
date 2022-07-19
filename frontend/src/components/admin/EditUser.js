@@ -8,7 +8,7 @@ const EditUser = ({ admin, editUser }) => {
   const [formData, setFormData] = useState({
     name: admin.userDetails.name,
     email: admin.userDetails.email,
-    isAdmin: admin.userDetails.isAdmin ? "Admin" : "Not Admin",
+    isAdmin: admin.userDetails.isAdmin ? true : false,
   });
 
   const { name, email, isAdmin } = formData;
@@ -16,9 +16,13 @@ const EditUser = ({ admin, editUser }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const checkboxOnChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: !isAdmin });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    editUser(admin.userDetails._id, { name, email, isAdmin: false });
+    editUser(admin.userDetails._id, { name, email, isAdmin });
   };
 
   if (
@@ -33,40 +37,42 @@ const EditUser = ({ admin, editUser }) => {
       <Link to='/admin/userlist'>
         <button className='back-btn btn'>Go Back</button>
       </Link>
-      <h1>EDIT USER</h1>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <h2>Name</h2>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='Name'
-          name='name'
-          value={name}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <h2>Email</h2>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='Email'
-          name='email'
-          value={email}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <h2>Admin</h2>
-        {/* <input
-          className='register-input'
-          type='checkbox'
-          placeholder='admin'
-          name='isAdmin'
-          value={isAdmin}
-          onChange={(e) => onChange(e)}
-          required
-        /> */}
-        <button className='btn register-btn'>create</button>
-      </form>
+      <div className='admin-edit'>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <h1>EDIT USER</h1>
+          <hr />
+          <h2>Name</h2>
+          <input
+            className='register-input'
+            type='text'
+            placeholder='Name'
+            name='name'
+            value={name}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <h2>Email</h2>
+          <input
+            className='register-input'
+            type='text'
+            placeholder='Email'
+            name='email'
+            value={email}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <h2>Admin</h2>
+          <input
+            className='register-input'
+            type='checkbox'
+            placeholder='admin'
+            name='isAdmin'
+            checked={isAdmin}
+            onChange={(e) => checkboxOnChange(e)}
+          />
+          <button className='btn edit-btn'>Save</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -11,11 +11,6 @@ const UserList = ({ getAllUsers, admin }) => {
   }, []);
   return (
     <div className='main'>
-      <input
-        className='search-input-phone hidden'
-        type='text'
-        placeholder='Search...'
-      />
       <Link to='/admin'>
         <button className='back-btn btn'>Go Back</button>
       </Link>

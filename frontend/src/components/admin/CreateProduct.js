@@ -10,7 +10,7 @@ const CreateProduct = ({ admin, createProduct }) => {
     price: "",
     description: "",
     quantity: "",
-    image: "",
+    image: "/images/placeholder.jpg",
   });
 
   const { name, price, quantity, description, image } = formData;

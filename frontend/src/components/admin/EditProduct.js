@@ -41,60 +41,63 @@ const EditProduct = ({ admin, editProduct }) => {
       <Link to='/admin/productlist'>
         <button className='back-btn btn'>Go Back</button>
       </Link>
-      <h1>EDIT PRODUCT</h1>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <h2>Name</h2>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='Name'
-          name='name'
-          value={name}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <h2>Price</h2>
-        <input
-          className='register-input'
-          type='number'
-          placeholder='Price'
-          name='price'
-          value={price}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <h2>Quantity</h2>
-        <input
-          className='register-input'
-          type='number'
-          placeholder='Quantity'
-          name='quantity'
-          value={quantity}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <h2>Description</h2>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='Description'
-          name='description'
-          value={description}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <h2>Image</h2>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='Image'
-          name='image'
-          value={image}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <button className='btn register-btn'>create</button>
-      </form>
+      <div className='admin-edit'>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <h1>EDIT PRODUCT</h1>
+          <hr />
+          <h2>Name</h2>
+          <input
+            className='register-input'
+            type='text'
+            placeholder='Name'
+            name='name'
+            value={name}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <h2>Price</h2>
+          <input
+            className='register-input'
+            type='number'
+            placeholder='Price'
+            name='price'
+            value={price}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <h2>Quantity</h2>
+          <input
+            className='register-input'
+            type='number'
+            placeholder='Quantity'
+            name='quantity'
+            value={quantity}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <h2>Description</h2>
+          <input
+            className='register-input'
+            type='text'
+            placeholder='Description'
+            name='description'
+            value={description}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <h2>Image</h2>
+          <input
+            className='register-input'
+            type='text'
+            placeholder='Image'
+            name='image'
+            value={image}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <button className='btn edit-btn'>Save</button>
+        </form>
+      </div>
     </div>
   );
 };

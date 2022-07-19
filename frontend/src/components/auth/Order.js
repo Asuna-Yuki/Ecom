@@ -54,7 +54,11 @@ const Order = ({
             ) : (
               <Loader />
             )}
-            <div className='order-box order-box-danger'>Not Delivered</div>
+            {orderDetail.isDelivered ? (
+              <div className='order-box order-box-success'>Delivered</div>
+            ) : (
+              <div className='order-box order-box-danger'>Not Delivered</div>
+            )}
             <div className='order-head'>PAYMENT</div>
             <div className='order-content'>
               Method: {orderDetail.paymentMethod}

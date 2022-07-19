@@ -26,8 +26,10 @@ const Checkout = ({
       return (totalCost += item.quantity * item.price);
     });
 
+  totalCost += shippingCost;
+
   const onClick = () => {
-    createOrder({ cartItems, shippingAddress, paymentMethod, user });
+    createOrder({ cartItems, shippingAddress, paymentMethod, user, totalCost });
   };
 
   if (!loading && !isAuthenticated) {
@@ -71,7 +73,7 @@ const Checkout = ({
               Shipping: ₹{shippingCost}
             </div>
             <div className='checkout-subtotal-item'>
-              Total Cost: ₹{shippingCost + totalCost}
+              Total Cost: ₹{totalCost}
             </div>
             <div className='checkout-subtotal-item'>
               <button onClick={() => onClick()} className='add-to-cart btn'>

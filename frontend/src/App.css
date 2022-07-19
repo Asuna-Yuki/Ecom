@@ -40,7 +40,12 @@
   transition: all 0.3s ease 0s;
   font-weight: 500;
   font-size: 1.6rem;
+  border: none;
 }
+
+/* .btn:hover {
+  background-color: rgba(156, 154, 154, 0.384);
+} */
 
 hr {
   border: none;
@@ -53,6 +58,7 @@ input {
   height: 2.5em;
   border: 1px solid grey;
   padding: 0.625em 1.5em;
+  width: 20em;
 }
 
 input::placeholder {
@@ -95,7 +101,7 @@ nav ul {
 
 .search-input {
   margin-left: 0.625em;
-  width: 300px;
+  max-width: 300px;
   border-radius: 50px;
 }
 
@@ -107,6 +113,17 @@ nav ul {
 }
 
 .search-btn:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+.edit-btn {
+  background-color: rgba(0, 136, 169, 1);
+  width: 100%;
+  margin-top: 1em;
+  display: block;
+  border-radius: 2px;
+}
+.edit-btn:hover {
   background-color: rgba(0, 136, 169, 0.8);
 }
 
@@ -471,9 +488,12 @@ h4 {
   width: 10em;
   margin-top: 1em;
 }
-.form input[type="text"],
-input[type="number"] {
+.form input {
   width: 100%;
+}
+input[type="checkbox"] {
+  width: inherit;
+  height: 20px;
 }
 
 /* checkout */
@@ -576,21 +596,6 @@ input[type="number"] {
 }
 /* admin */
 
-.admin-column {
-  margin-top: 1em;
-  display: grid;
-  grid-template-columns: 1.1fr 0.5fr 0.7fr 0.5fr 0.2fr;
-  gap: 0.5em;
-}
-
-.admin-column .info {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 1em;
-  margin-left: 0.5em;
-  background: var(--lightGrey);
-}
 .admin-dashboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -614,6 +619,26 @@ input[type="number"] {
   background-color: #3a38384c;
   transition: all 0.3s ease 0s;
 }
+
+.admin-column {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1.1fr 0.5fr 0.7fr 0.5fr 0.2fr;
+  gap: 0.5em;
+}
+.admin-order {
+  grid-template-columns: minmax(1fr auto) 1fr 0.5fr 0.7fr 1fr 0.5fr 0.2fr;
+}
+
+.admin-column .info {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 1em;
+  margin-left: 0.5em;
+  background: var(--lightGrey);
+}
+
 .info {
   font-size: 1.2em;
   font-weight: 500;
@@ -640,6 +665,16 @@ input[type="number"] {
   background-color: #0000001e;
 }
 
+.admin-edit {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-edit form {
+  padding: 2em;
+  background-color: var(--lightBlue);
+  border-radius: 2px;
+}
 /* alert */
 .alert {
   font-size: 1.5rem;
@@ -839,7 +874,7 @@ footer a:hover {
   .nav-toggle-lable:hover {
     background-color: rgba(0, 0, 0, 0.755);
   }
-  .response .search {
+  .search {
     display: none;
   }
 
@@ -1001,7 +1036,7 @@ footer a:hover {
   .nav-toggle-lable:hover {
     background-color: rgba(0, 0, 0, 0.755);
   }
-  .response .search {
+  .search {
     display: none;
   }
 
