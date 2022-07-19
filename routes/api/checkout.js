@@ -8,7 +8,8 @@ const Product = require("../../models/Product");
 // @desc   check order and create order
 // @access Public
 router.post("/", async (req, res) => {
-  const { cartItems, shippingAddress, paymentMethod, user } = req.body;
+  const { cartItems, shippingAddress, paymentMethod, user, totalCost } =
+    req.body;
 
   try {
     let quantityError = false;
@@ -33,6 +34,7 @@ router.post("/", async (req, res) => {
       shippingAddress: shippingAddress,
       paymentMethod: paymentMethod,
       orderItems: cartItems,
+      totalCost: totalCost,
     });
 
     await order.save();

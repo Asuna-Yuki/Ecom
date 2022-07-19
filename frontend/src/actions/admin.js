@@ -7,11 +7,14 @@ import {
   ADMIN_GET_ALL_USERS_FAIL,
   ADMIN_GET_ALL_USERS_SUCCESS,
   ADMIN_GET_ORDER_BY_ID_FAIL,
+  ADMIN_GET_ORDER_BY_ID_REQUEST,
   ADMIN_GET_ORDER_BY_ID_SUCCESS,
   ADMIN_GET_PRODUCT_BY_ID_FAIL,
   ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
   ADMIN_GET_USER_BY_ID_FAIL,
   ADMIN_GET_USER_BY_ID_SUCCESS,
+  ADMIN_ORDER_UPDATE_FAIL,
+  ADMIN_ORDER_UPDATE_SUCCESS,
   ADMIN_PRODUCT_CREATE_FAIL,
   ADMIN_PRODUCT_CREATE_SUCCESS,
   ADMIN_PRODUCT_UPDATE_FAIL,
@@ -201,9 +204,12 @@ export const getAllOrders = () => async (dispatch) => {
   }
 };
 
-// get user by id
+// get order by id
 export const getOrderById = (userId) => async (dispatch) => {
   try {
+    dispatch({
+      type: ADMIN_GET_ORDER_BY_ID_REQUEST,
+    });
     const res = await axios.get(`/api/admin/orders/${userId}`);
 
     dispatch({
@@ -220,30 +226,28 @@ export const getOrderById = (userId) => async (dispatch) => {
 };
 
 // // Update user
-// export const editUser =
-//   (userId, { name, email, isAdmin }) =>
-//   async (dispatch) => {
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     };
+export const markAsDelivered = (orderId) => async (dispatch) => {
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // };
 
-//     const body = JSON.stringify({ name, email, isAdmin });
+  // const body = JSON.stringify({ isDelivered });
 
-//     try {
-//       const res = await axios.post(`/api/admin/users/${userId}`, body, config);
+  try {
+    const res = await axios.post(`/api/admin/orders/${orderId}`);
 
-//       dispatch({
-//         type: ADMIN_USER_UPDATE_SUCCESS,
-//         payload: res.data,
-//       });
-//     } catch (err) {
-//       console.log(err.message);
-//       console.log("Update user fail. --admin error");
+    dispatch({
+      type: ADMIN_ORDER_UPDATE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.log(err.message);
+    console.log("Update order fail. --admin error");
 
-//       dispatch({
-//         type: ADMIN_USER_UPDATE_FAIL,
-//       });
-//     }
-//   };
+    dispatch({
+      type: ADMIN_ORDER_UPDATE_FAIL,
+    });
+  }
+};
