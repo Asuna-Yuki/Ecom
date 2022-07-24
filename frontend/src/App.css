@@ -40,7 +40,12 @@
   transition: all 0.3s ease 0s;
   font-weight: 500;
   font-size: 1.6rem;
+  border: none;
 }
+
+/* .btn:hover {
+  background-color: rgba(156, 154, 154, 0.384);
+} */
 
 hr {
   border: none;
@@ -53,6 +58,7 @@ input {
   height: 2.5em;
   border: 1px solid grey;
   padding: 0.625em 1.5em;
+  width: 20em;
 }
 
 input::placeholder {
@@ -61,6 +67,7 @@ input::placeholder {
 
 .image {
   max-width: 100%;
+  min-height: 60%;
 }
 a {
   text-decoration: none;
@@ -95,7 +102,7 @@ nav ul {
 
 .search-input {
   margin-left: 0.625em;
-  width: 300px;
+  max-width: 300px;
   border-radius: 50px;
 }
 
@@ -108,6 +115,28 @@ nav ul {
 
 .search-btn:hover {
   background-color: rgba(0, 136, 169, 0.8);
+}
+
+.edit-btn,
+.continue-btn {
+  background-color: rgba(0, 136, 169, 1);
+  min-width: 100%;
+  margin-top: 1em;
+  display: block;
+  border-radius: 2px;
+}
+.edit-btn:hover,
+.continue-btn:hover {
+  background-color: rgba(0, 136, 169, 0.8);
+}
+
+.delete-btn {
+  background-color: rgba(218, 0, 0, 0.867);
+  min-width: 1em;
+  margin-top: 1em;
+  display: inline-block;
+  border-radius: 2px;
+  margin-left: 0.5em;
 }
 
 .navlinks {
@@ -461,19 +490,19 @@ h4 {
 .form {
   margin: 0 auto;
 }
+.form form {
+  min-width: 36em;
+}
 .form label {
   font-size: 2rem;
   font-weight: 500;
   display: block;
   margin-top: 0.5em;
 }
-.form button {
-  width: 10em;
-  margin-top: 1em;
-}
-.form input[type="text"],
-input[type="number"] {
-  width: 100%;
+input[type="radio"],
+input[type="checkbox"] {
+  width: inherit;
+  height: 20px;
 }
 
 /* checkout */
@@ -512,6 +541,11 @@ input[type="number"] {
 .checkout-card-info {
   font-size: 2rem;
   height: 100%;
+  padding: 0.5em 0.25em;
+}
+.checkout-card-info h2 {
+  font-size: 2rem;
+  font-weight: 400;
 }
 .checkout-subtotal,
 .order-subtotal {
@@ -576,21 +610,6 @@ input[type="number"] {
 }
 /* admin */
 
-.admin-column {
-  margin-top: 1em;
-  display: grid;
-  grid-template-columns: 1.1fr 0.5fr 0.7fr 0.5fr 0.2fr;
-  gap: 0.5em;
-}
-
-.admin-column .info {
-  display: flex;
-  align-items: center;
-  height: 50px;
-  padding: 1em;
-  margin-left: 0.5em;
-  background: var(--lightGrey);
-}
 .admin-dashboard {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -614,6 +633,26 @@ input[type="number"] {
   background-color: #3a38384c;
   transition: all 0.3s ease 0s;
 }
+
+.admin-column {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1.1fr 0.5fr 0.7fr 0.5fr 0.2fr;
+  gap: 0.5em;
+}
+.admin-order {
+  grid-template-columns: minmax(max-content, 1fr) 0.5fr 0.5fr 0.5fr 0.7fr 0.7fr 0.2fr;
+}
+
+.admin-column .info {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 1em;
+  margin-left: 0.5em;
+  background: var(--lightGrey);
+}
+
 .info {
   font-size: 1.2em;
   font-weight: 500;
@@ -637,9 +676,26 @@ input[type="number"] {
   padding: 1em;
   font-weight: 200;
   margin-top: 0.5em;
-  background-color: #0000001e;
+  background-color: var(--lightBlue);
+}
+.admin-user-info .edit-btn,
+.admin-product-info .edit-btn {
+  min-width: 1em;
+  display: inline-block;
 }
 
+.admin-edit,
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.admin-edit form,
+.form form {
+  padding: 2em;
+  background-color: var(--lightBlue);
+  border-radius: 2px;
+}
 /* alert */
 .alert {
   font-size: 1.5rem;
@@ -839,7 +895,7 @@ footer a:hover {
   .nav-toggle-lable:hover {
     background-color: rgba(0, 0, 0, 0.755);
   }
-  .response .search {
+  .search {
     display: none;
   }
 
@@ -954,12 +1010,9 @@ footer a:hover {
     display: block;
   }
   .checkout-card {
-    display: grid;
-    background-color: #2b282809;
     grid-template-columns: 0.5fr 0.5fr 1fr;
     gap: 0.4em;
-    height: 100px;
-    margin-top: 0.5em;
+    height: 80px;
   }
   .admin-dashboard {
     grid-template-columns: 1fr;
@@ -1001,7 +1054,7 @@ footer a:hover {
   .nav-toggle-lable:hover {
     background-color: rgba(0, 0, 0, 0.755);
   }
-  .response .search {
+  .search {
     display: none;
   }
 
@@ -1044,5 +1097,10 @@ footer a:hover {
 
   .search-input-phone {
     display: block;
+  }
+
+  .checkout-card-info h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
   }
 }

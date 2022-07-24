@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getProductById } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const ProductInfo = ({ getProductById, admin }) => {
-  // GEt user by id
+const ProductInfo = ({ auth, admin, getProductById }) => {
+  // Get product by id
   useEffect(() => {
     getProductById(productId);
   }, []);
@@ -15,6 +15,13 @@ const ProductInfo = ({ getProductById, admin }) => {
 
   // get product id from params i.e. url
   const productId = params.id;
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
   return (
     <div className='main'>
       <Link to='/admin/productlist'>
@@ -22,21 +29,21 @@ const ProductInfo = ({ getProductById, admin }) => {
       </Link>
       <h1>PRODUCT DETAILS</h1>
       {!admin.loading ? (
-        <div>
-          <h2>Name:</h2>
-          <h2>{admin.productDetails.name}</h2>
-          <h2>Price:</h2>
-          <h2>{admin.productDetails.price}</h2>
-          <h2>Description:</h2>
-          <h2>{admin.productDetails.description}</h2>
-          <h2>Quantity:</h2>
-          <h2>{admin.productDetails.quantity}</h2>
-          <h2>Image:</h2>
-          <h2>{admin.productDetails.image} </h2>
+        <div className='admin-user-info'>
+          <div>
+            <strong>Name: </strong>
+            {admin.productDetails.name}
+          </div>
+          <div>
+            <strong>Price:</strong> ₹ {admin.productDetails.price}
+          </div>
+          <div>
+            <strong>Quantity:</strong> {admin.productDetails.quantity}
+          </div>
           <Link to='/admin/product/edit'>
-            <button className='btn primary-btn'>EDIT</button>
+            <button className='btn edit-btn'>EDIT</button>
           </Link>
-          <button className='btn primary-btn'>DELETE</button>
+          <button className='btn delete-btn'>DELETE</button>
         </div>
       ) : (
         <Loader />
@@ -48,10 +55,12 @@ const ProductInfo = ({ getProductById, admin }) => {
 ProductInfo.propTypes = {
   getProductById: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getProductById })(ProductInfo);

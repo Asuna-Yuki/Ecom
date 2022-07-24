@@ -6,6 +6,7 @@ import {
   ADMIN_GET_ALL_USERS_FAIL,
   ADMIN_GET_ALL_USERS_SUCCESS,
   ADMIN_GET_ORDER_BY_ID_FAIL,
+  ADMIN_GET_ORDER_BY_ID_REQUEST,
   ADMIN_GET_ORDER_BY_ID_SUCCESS,
   ADMIN_GET_PRODUCT_BY_ID_FAIL,
   ADMIN_GET_PRODUCT_BY_ID_SUCCESS,
@@ -67,6 +68,12 @@ export default function (state = initialState, action) {
         ...state,
         orderDetails: payload,
         loading: false,
+      };
+
+    case ADMIN_GET_ORDER_BY_ID_REQUEST:
+      return {
+        ...state,
+        loading: true,
       };
 
     case ADMIN_GET_ALL_USERS_FAIL:

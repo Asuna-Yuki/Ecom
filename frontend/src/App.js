@@ -15,6 +15,8 @@ import Address from "./components/auth/Address";
 import Payment from "./components/auth/Payment";
 import Checkout from "./components/auth/Checkout";
 import Order from "./components/auth/Order";
+import MyOrders from "./components/auth/MyOrders";
+
 // Admin
 import AdminDashboard from "./components/admin/AdminDashboard";
 import UserList from "./components/admin/UserList";
@@ -24,6 +26,8 @@ import ProductList from "./components/admin/ProductList";
 import ProductInfo from "./components/admin/ProductInfo";
 import EditProduct from "./components/admin/EditProduct";
 import CreateProduct from "./components/admin/CreateProduct";
+import OrderList from "./components/admin/OrderList";
+import OrderInfo from "./components/admin/OrderInfo";
 
 // Redux
 import { Provider } from "react-redux";
@@ -31,7 +35,6 @@ import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import { loadCart } from "./actions/cart";
-import OrderList from "./components/admin/OrderList";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -66,6 +69,7 @@ const App = () => {
           <Route path='/payment' element={<Payment />} />
           <Route path='/checkout' element={<Checkout />} />
           <Route path='/order/:id' element={<Order />} />
+          <Route path='/order/myorder/:id' element={<MyOrders />} />
           <Route path='/admin' element={<AdminDashboard />} />
           <Route path='/admin/userlist' element={<UserList />} />
           <Route path='/admin/user/:id' element={<UserInfo />} />
@@ -76,6 +80,7 @@ const App = () => {
           <Route path='/admin/product/create' element={<CreateProduct />} />
 
           <Route path='/admin/orderlist' element={<OrderList />} />
+          <Route path='/admin/order/:id' element={<OrderInfo />} />
         </Routes>
         <Footer />
       </Router>

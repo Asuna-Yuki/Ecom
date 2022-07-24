@@ -1,21 +1,24 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAllUsers } from "../../actions/admin";
 import UserCard from "./UserCard";
 
-const UserList = ({ getAllUsers, admin }) => {
+const UserList = ({ auth, admin, getAllUsers }) => {
   useEffect(() => {
     getAllUsers();
   }, []);
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
+
   return (
     <div className='main'>
-      <input
-        className='search-input-phone hidden'
-        type='text'
-        placeholder='Search...'
-      />
       <Link to='/admin'>
         <button className='back-btn btn'>Go Back</button>
       </Link>
@@ -47,10 +50,12 @@ const UserList = ({ getAllUsers, admin }) => {
 UserList.propTypes = {
   getAllUsers: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getAllUsers })(UserList);

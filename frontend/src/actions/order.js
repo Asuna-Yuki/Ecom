@@ -5,6 +5,8 @@ import {
   ORDER_FAIL,
   ORDER_DETAIL_SUCCESS,
   ORDER_DETAIL_FAIL,
+  GET_ORDER_BY_USER_SUCCESS,
+  GET_ORDER_BY_USER_FAIL,
 } from "./types";
 
 // create order
@@ -55,6 +57,30 @@ export const getOrderById = (orderId) => async (dispatch) => {
     }
     dispatch({
       type: ORDER_DETAIL_FAIL,
+    });
+  }
+};
+
+// get order by user id
+export const getOrderByUserId = (orderId) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/order/myorder/${orderId}`);
+
+    dispatch({
+      type: GET_ORDER_BY_USER_SUCCESS,
+      payload: res.data,
+    });
+
+    console.log(res.data);
+  } catch (err) {
+    const errors = [err.message];
+    console.log(errors);
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error)));
+    }
+    dispatch({
+      type: GET_ORDER_BY_USER_FAIL,
     });
   }
 };

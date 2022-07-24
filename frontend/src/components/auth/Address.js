@@ -40,53 +40,50 @@ const Address = ({
       <Link to='/cart'>
         <button className='back-btn btn'>Go Back</button>
       </Link>
-      {/* <div className='form'> */}
-      <h1>SHIPPING</h1>
-      <hr />
-      <form className='form' onSubmit={(e) => onSubmit(e)}>
-        <label htmlFor='address'>Address</label>
-        <input
-          type='text'
-          placeholder='Address'
-          name='address'
-          value={address}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <label htmlFor='city'>City</label>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='City'
-          name='city'
-          value={city}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <label htmlFor='state'>State</label>
-        <input
-          className='register-input'
-          type='text'
-          placeholder='State'
-          name='state'
-          value={state}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <label htmlFor='pincode'>Pincode</label>
-        <input
-          className='register-input'
-          type='number'
-          placeholder='Pincode'
-          name='pincode'
-          value={pincode}
-          onChange={(e) => onChange(e)}
-          required
-        />
-        <button className='btn register-btn'>Continue</button>
-      </form>
+      <div className='form'>
+        <form onSubmit={(e) => onSubmit(e)}>
+          <h1>SHIPPING</h1>
+          <hr />
+          <label htmlFor='address'>Address</label>
+          <input
+            type='text'
+            placeholder='Address'
+            name='address'
+            value={address}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <label htmlFor='city'>City</label>
+          <input
+            type='text'
+            placeholder='City'
+            name='city'
+            value={city}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <label htmlFor='state'>State</label>
+          <input
+            type='text'
+            placeholder='State'
+            name='state'
+            value={state}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <label htmlFor='pincode'>Pincode</label>
+          <input
+            type='number'
+            placeholder='Pincode'
+            name='pincode'
+            value={pincode}
+            onChange={(e) => onChange(e)}
+            required
+          />
+          <button className='btn continue-btn'>Continue</button>
+        </form>
+      </div>
     </div>
-    // </div>
   );
 };
 
