@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { editProduct } from "../../actions/admin";
 
-const EditProduct = ({ admin, editProduct }) => {
+const EditProduct = ({ auth, admin, editProduct }) => {
   const [formData, setFormData] = useState({
     name: admin.productDetails.name,
     price: admin.productDetails.price,
@@ -18,6 +18,8 @@ const EditProduct = ({ admin, editProduct }) => {
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  let navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
     editProduct(admin.productDetails._id, {
@@ -27,7 +29,15 @@ const EditProduct = ({ admin, editProduct }) => {
       description,
       image,
     });
+    navigate("/admin/productlist");
   };
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
 
   if (
     admin.productDetails && // 👈 null and undefined check
@@ -105,10 +115,12 @@ const EditProduct = ({ admin, editProduct }) => {
 EditProduct.propTypes = {
   editProduct: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { editProduct })(EditProduct);

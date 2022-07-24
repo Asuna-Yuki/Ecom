@@ -1,9 +1,16 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const AdminDashboard = ({ admin }) => {
+const AdminDashboard = ({ admin, auth }) => {
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
+
   return (
     <div className='main'>
       <h1>ADMIN DASHBOARD</h1>
@@ -27,10 +34,12 @@ const AdminDashboard = ({ admin }) => {
 
 AdminDashboard.propTypes = {
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, {})(AdminDashboard);

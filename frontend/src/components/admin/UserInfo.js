@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getUserById } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const UserInfo = ({ getUserById, admin }) => {
+const UserInfo = ({ auth, admin, getUserById }) => {
   // GEt user by id
   useEffect(() => {
     getUserById(userId);
@@ -13,8 +13,16 @@ const UserInfo = ({ getUserById, admin }) => {
 
   let params = useParams();
 
-  // get product id from params i.e. url
+  // get user id from params i.e. url
   const userId = params.id;
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
+
   return (
     <div className='main'>
       <Link to='/admin/userlist'>
@@ -34,12 +42,10 @@ const UserInfo = ({ getUserById, admin }) => {
             <strong>Access:</strong>{" "}
             {admin.userDetails.isAdmin ? `Admin` : `Not Admin`}
           </div>
-          <div>
-            <Link to='/admin/user/edit'>
-              <button className='btn primary-btn'>EDIT</button>
-            </Link>
-            <button className='btn primary-btn'>DELETE</button>
-          </div>
+          <Link to='/admin/user/edit'>
+            <button className='btn edit-btn'>EDIT</button>
+          </Link>
+          <button className='btn delete-btn'>DELETE</button>
         </div>
       ) : (
         <Loader />
@@ -51,10 +57,12 @@ const UserInfo = ({ getUserById, admin }) => {
 UserInfo.propTypes = {
   getUserById: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getUserById })(UserInfo);

@@ -71,7 +71,9 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         <span />
       </label>
       <input type='checkbox' className='nav-toggle' id='nav-toggle' />
-      <nav>{!loading && (isAuthenticated ? authLink : guestLink)}</nav>
+      <nav className='test'>
+        {!loading && (isAuthenticated ? authLink : guestLink)}
+      </nav>
     </header>
   );
 };

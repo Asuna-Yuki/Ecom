@@ -1,14 +1,22 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getAllProducts } from "../../actions/admin";
 import ProductCard from "./ProductCard";
 
-const ProductList = ({ getAllProducts, admin }) => {
+const ProductList = ({ auth, admin, getAllProducts }) => {
   useEffect(() => {
     getAllProducts();
   }, []);
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
+
   return (
     <div className='main'>
       <Link to='/admin'>
@@ -42,10 +50,12 @@ const ProductList = ({ getAllProducts, admin }) => {
 ProductList.propTypes = {
   getAllProducts: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getAllProducts })(ProductList);

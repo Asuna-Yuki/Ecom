@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getOrderById, markAsDelivered } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const OrderInfo = ({ getOrderById, admin, markAsDelivered }) => {
+const OrderInfo = ({ auth, admin, getOrderById, markAsDelivered }) => {
   // GEt order by id
   useEffect(() => {
     getOrderById(orderId);
@@ -15,6 +15,15 @@ const OrderInfo = ({ getOrderById, admin, markAsDelivered }) => {
 
   // get order id from params i.e. url
   const orderId = params.id;
+
+  let navigate = useNavigate();
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
   return (
     <div className='main'>
       <Link to='/admin/orderlist'>
@@ -49,17 +58,15 @@ const OrderInfo = ({ getOrderById, admin, markAsDelivered }) => {
             <strong>Delivery:</strong>{" "}
             {admin.orderDetails.isDelivered ? `Delivered` : `Not Delivered`}
           </div>
-          <div>
-            <button
-              className='btn primary-btn'
-              onClick={() => {
-                markAsDelivered(admin.orderDetails._id);
-              }}
-            >
-              EDIT
-            </button>
-            <button className='btn primary-btn'>DELETE</button>
-          </div>
+          <button
+            className='btn edit-btn'
+            onClick={() => {
+              markAsDelivered(admin.orderDetails._id);
+              navigate("/admin/orderlist");
+            }}
+          >
+            Mark as Delivered
+          </button>
         </div>
       ) : (
         <Loader />
@@ -71,10 +78,12 @@ OrderInfo.propTypes = {
   getOrderById: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
   markAsDelivered: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { getOrderById, markAsDelivered })(

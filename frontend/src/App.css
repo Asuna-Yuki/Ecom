@@ -67,6 +67,7 @@ input::placeholder {
 
 .image {
   max-width: 100%;
+  min-height: 60%;
 }
 a {
   text-decoration: none;
@@ -116,15 +117,26 @@ nav ul {
   background-color: rgba(0, 136, 169, 0.8);
 }
 
-.edit-btn {
+.edit-btn,
+.continue-btn {
   background-color: rgba(0, 136, 169, 1);
-  width: 100%;
+  min-width: 100%;
   margin-top: 1em;
   display: block;
   border-radius: 2px;
 }
-.edit-btn:hover {
+.edit-btn:hover,
+.continue-btn:hover {
   background-color: rgba(0, 136, 169, 0.8);
+}
+
+.delete-btn {
+  background-color: rgba(218, 0, 0, 0.867);
+  min-width: 1em;
+  margin-top: 1em;
+  display: inline-block;
+  border-radius: 2px;
+  margin-left: 0.5em;
 }
 
 .navlinks {
@@ -478,19 +490,16 @@ h4 {
 .form {
   margin: 0 auto;
 }
+.form form {
+  min-width: 36em;
+}
 .form label {
   font-size: 2rem;
   font-weight: 500;
   display: block;
   margin-top: 0.5em;
 }
-.form button {
-  width: 10em;
-  margin-top: 1em;
-}
-.form input {
-  width: 100%;
-}
+input[type="radio"],
 input[type="checkbox"] {
   width: inherit;
   height: 20px;
@@ -532,6 +541,7 @@ input[type="checkbox"] {
 .checkout-card-info {
   font-size: 2rem;
   height: 100%;
+  padding: 0.5em 0.25em;
 }
 .checkout-card-info h2 {
   font-size: 2rem;
@@ -666,15 +676,22 @@ input[type="checkbox"] {
   padding: 1em;
   font-weight: 200;
   margin-top: 0.5em;
-  background-color: #0000001e;
+  background-color: var(--lightBlue);
+}
+.admin-user-info .edit-btn,
+.admin-product-info .edit-btn {
+  min-width: 1em;
+  display: inline-block;
 }
 
-.admin-edit {
+.admin-edit,
+.form {
   display: flex;
   justify-content: center;
 }
 
-.admin-edit form {
+.admin-edit form,
+.form form {
   padding: 2em;
   background-color: var(--lightBlue);
   border-radius: 2px;

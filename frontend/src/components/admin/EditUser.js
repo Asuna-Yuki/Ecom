@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { editUser } from "../../actions/admin";
 
-const EditUser = ({ admin, editUser }) => {
+const EditUser = ({ auth, admin, editUser }) => {
   const [formData, setFormData] = useState({
     name: admin.userDetails.name,
     email: admin.userDetails.email,
@@ -20,10 +20,20 @@ const EditUser = ({ admin, editUser }) => {
     setFormData({ ...formData, [e.target.name]: !isAdmin });
   };
 
+  let navigate = useNavigate();
+
   const onSubmit = (e) => {
     e.preventDefault();
     editUser(admin.userDetails._id, { name, email, isAdmin });
+    navigate("/admin/userlist");
   };
+
+  if (!auth.loading && !auth.isAuthenticated) {
+    return <Navigate to='/' />;
+  }
+  if (auth.user && !auth.user.isAdmin) {
+    return <Navigate to='/' />;
+  }
 
   if (
     admin.userDetails && // 👈 null and undefined check
@@ -80,10 +90,12 @@ const EditUser = ({ admin, editUser }) => {
 EditUser.propTypes = {
   editUser: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   admin: state.admin,
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { editUser })(EditUser);
