@@ -71,6 +71,7 @@ input::placeholder {
 }
 a {
   text-decoration: none;
+  color: var(--black);
 }
 
 /* nav */
@@ -265,7 +266,7 @@ nav ul {
 }
 
 .product-des h1,
-p {
+.product-des p {
   padding: 0 5%;
   color: var(--grey-font-color);
 }
@@ -607,6 +608,35 @@ input[type="checkbox"] {
   background-color: rgba(217, 0, 0, 0.54);
   border: 1px solid rgba(168, 0, 0, 0.752);
   color: white;
+}
+
+.order-card {
+  display: flex;
+  font-size: 1.5rem;
+  margin-top: 1em;
+  max-height: 300px;
+  background-color: var(--lightBlue);
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+}
+.order-card:hover {
+  transition: all 0.5s ease 0s;
+  box-shadow: rgba(0, 0, 0, 0.678) 0px 3px 8px;
+}
+.order-card-image {
+  flex-basis: 30%;
+}
+.order-card-detail {
+  flex-basis: 70%;
+  padding: 1em;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+}
+.order-card-detail p {
+  display: grid;
+  grid-template-columns: 0.15fr 1fr;
+  align-items: center;
 }
 /* admin */
 

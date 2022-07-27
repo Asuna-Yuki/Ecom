@@ -58,21 +58,32 @@ router.post("/:id", auth, admin, async (req, res) => {
     } else {
       return res.status(404).json({ erors: [{ msg: "User not found." }] });
     }
-
-    let checkEmail = await User.findOne({ email: user.email });
-
-    // if (checkEmail._id !== user._id) {
-    //   return res
-    //     .status(400)
-    //     .json({ erors: [{ msg: "Email already exists." }] });
-    // }
-
     await user.save();
 
     res.json(user);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error.--user update.");
+  }
+});
+
+// @Route  POST api/admin/users
+// @desc   delete user
+// @access Private/Admin
+router.post("/delete/:id", async (req, res) => {
+  try {
+    // see if the user exists
+    let user = await User.findById(req.params.id);
+
+    if (user) {
+      await user.remove();
+      res.json({ msg: "User removed." });
+    } else {
+      return res.status(404).json({ erors: [{ msg: "User not found." }] });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error.--user delete.");
   }
 });
 

@@ -20,6 +20,11 @@ const Navbar = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     user && !user.isAdmin ? (
       <ul className='navlinks'>
         <li>
+          <Link to={`/order/myorder/${user._id}`}>
+            <span> </span>My Order
+          </Link>
+        </li>
+        <li>
           <Link to='/cart'>
             <i className='fa-solid fa-cart-shopping' />
             <span> </span>Cart

@@ -17,8 +17,12 @@ import {
   ADMIN_ORDER_UPDATE_SUCCESS,
   ADMIN_PRODUCT_CREATE_FAIL,
   ADMIN_PRODUCT_CREATE_SUCCESS,
+  ADMIN_PRODUCT_DELETE_FAIL,
+  ADMIN_PRODUCT_DELETE_SUCCESS,
   ADMIN_PRODUCT_UPDATE_FAIL,
   ADMIN_PRODUCT_UPDATE_SUCCESS,
+  ADMIN_USER_DELETE_FAIL,
+  ADMIN_USER_DELETE_SUCCESS,
   ADMIN_USER_UPDATE_FAIL,
   ADMIN_USER_UPDATE_SUCCESS,
 } from "./types";
@@ -225,16 +229,8 @@ export const getOrderById = (userId) => async (dispatch) => {
   }
 };
 
-// // Update user
+// Update user
 export const markAsDelivered = (orderId) => async (dispatch) => {
-  // const config = {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
-
-  // const body = JSON.stringify({ isDelivered });
-
   try {
     const res = await axios.post(`/api/admin/orders/${orderId}`);
 
@@ -248,6 +244,42 @@ export const markAsDelivered = (orderId) => async (dispatch) => {
 
     dispatch({
       type: ADMIN_ORDER_UPDATE_FAIL,
+    });
+  }
+};
+
+// delete product
+export const deleteProductById = (productId) => async (dispatch) => {
+  try {
+    const res = await axios.post(`/api/product/delete/${productId}`);
+
+    dispatch({
+      type: ADMIN_PRODUCT_DELETE_SUCCESS,
+    });
+  } catch (err) {
+    console.log(err.message);
+    console.log("Delete order fail. --admin error");
+
+    dispatch({
+      type: ADMIN_PRODUCT_DELETE_FAIL,
+    });
+  }
+};
+
+// delete user
+export const deleteUserById = (userId) => async (dispatch) => {
+  try {
+    const res = await axios.post(`/api/admin/users/delete/${userId}`);
+
+    dispatch({
+      type: ADMIN_USER_DELETE_SUCCESS,
+    });
+  } catch (err) {
+    console.log(err.message);
+    console.log("Delete user fail. --admin error");
+
+    dispatch({
+      type: ADMIN_USER_DELETE_FAIL,
     });
   }
 };

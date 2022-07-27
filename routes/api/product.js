@@ -5,7 +5,7 @@ const auth = require("../../middleware/auth");
 const admin = require("../../middleware/admin");
 // Models
 const Product = require("../../models/Product");
-const Rreview = require("../../models/Review");
+const Review = require("../../models/Review");
 
 // @Route  GET api/product
 // @desc   getting all products
@@ -102,23 +102,24 @@ router.post("/", auth, admin, async (req, res) => {
   }
 });
 
-// @Route  GET api/product
-// @desc   get product by id
+// @Route  POST api/product
+// @desc   delete product
 // @access Private/Admin
+router.post("/delete/:id", auth, admin, async (req, res) => {
+  try {
+    // see if the product exists
+    let product = await Product.findById(req.params.id);
 
-// router.get("/:id", auth, admin, async (req, res) => {
-//   try {
-//     const product = await Product.findById(req.params.id); //req.params.id
-
-//     if (!product) {
-//       return res.status(404).send("Product not found.");
-//     }
-
-//     res.json(product);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Server error.--one product");
-//   }
-// });
+    if (product) {
+      await product.remove();
+      res.json({ msg: "Product removed." });
+    } else {
+      return res.status(404).json({ erors: [{ msg: "Product not found." }] });
+    }
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error.--product delete.");
+  }
+});
 
 module.exports = router;
