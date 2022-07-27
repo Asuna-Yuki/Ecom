@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getProductById } from "../../actions/admin";
+import { deleteProductById, getProductById } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const ProductInfo = ({ auth, admin, getProductById }) => {
+const ProductInfo = ({ auth, admin, getProductById, deleteProductById }) => {
   // Get product by id
   useEffect(() => {
     getProductById(productId);
   }, []);
 
   let params = useParams();
+  let navigate = useNavigate();
 
   // get product id from params i.e. url
   const productId = params.id;
+
+  const onClick = () => {
+    let check = window.confirm(
+      "Are you sure, this will permanently be deleted."
+    );
+    if (check) {
+      deleteProductById(admin.productDetails._id);
+      navigate("/admin/productlist");
+    }
+  };
 
   if (!auth.loading && !auth.isAuthenticated) {
     return <Navigate to='/' />;
@@ -43,7 +54,9 @@ const ProductInfo = ({ auth, admin, getProductById }) => {
           <Link to='/admin/product/edit'>
             <button className='btn edit-btn'>EDIT</button>
           </Link>
-          <button className='btn delete-btn'>DELETE</button>
+          <button className='btn delete-btn' onClick={() => onClick()}>
+            DELETE
+          </button>
         </div>
       ) : (
         <Loader />
@@ -54,6 +67,7 @@ const ProductInfo = ({ auth, admin, getProductById }) => {
 
 ProductInfo.propTypes = {
   getProductById: PropTypes.func.isRequired,
+  deleteProductById: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -63,4 +77,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getProductById })(ProductInfo);
+export default connect(mapStateToProps, { getProductById, deleteProductById })(
+  ProductInfo
+);

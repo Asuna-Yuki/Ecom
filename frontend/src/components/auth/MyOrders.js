@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getOrderByUserId } from "../../actions/order";
 import MyOrdersCard from "./MyOrdersCard";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Loader from "../layouts/Loader";
 
 const MyOrders = ({ auth, getOrderByUserId, order }) => {
   // const userId = auth.user && auth.user._id;
@@ -15,9 +16,24 @@ const MyOrders = ({ auth, getOrderByUserId, order }) => {
   // get orders by user id
   useEffect(() => {
     getOrderByUserId(userId);
-  });
+  }, []);
 
-  return <div>MyOrders</div>;
+  return (
+    <div className='main'>
+      <Link to='/'>
+        <button className='back-btn btn'>Go Back</button>
+      </Link>
+      <h1>ORDERS</h1>
+
+      {!order.orderLoading ? (
+        order.userOrders.map((order) => (
+          <MyOrdersCard key={order._id} order={order} />
+        ))
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
 };
 
 MyOrders.propTypes = {

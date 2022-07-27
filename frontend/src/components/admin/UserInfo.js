@@ -1,20 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getUserById } from "../../actions/admin";
+import { deleteUserById, getUserById } from "../../actions/admin";
 import Loader from "../layouts/Loader";
 
-const UserInfo = ({ auth, admin, getUserById }) => {
+const UserInfo = ({ auth, admin, getUserById, deleteUserById }) => {
   // GEt user by id
   useEffect(() => {
     getUserById(userId);
   }, []);
 
   let params = useParams();
+  let navigate = useNavigate();
 
   // get user id from params i.e. url
   const userId = params.id;
+
+  const onClick = () => {
+    let check = window.confirm(
+      "Are you sure, this will permanently be deleted."
+    );
+    if (check) {
+      deleteUserById(admin.userDetails._id);
+      navigate("/admin/userlist");
+    }
+  };
 
   if (!auth.loading && !auth.isAuthenticated) {
     return <Navigate to='/' />;
@@ -45,7 +56,9 @@ const UserInfo = ({ auth, admin, getUserById }) => {
           <Link to='/admin/user/edit'>
             <button className='btn edit-btn'>EDIT</button>
           </Link>
-          <button className='btn delete-btn'>DELETE</button>
+          <button className='btn delete-btn' onClick={() => onClick()}>
+            DELETE
+          </button>
         </div>
       ) : (
         <Loader />
@@ -56,6 +69,7 @@ const UserInfo = ({ auth, admin, getUserById }) => {
 
 UserInfo.propTypes = {
   getUserById: PropTypes.func.isRequired,
+  deleteUserById: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 };
@@ -65,4 +79,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getUserById })(UserInfo);
+export default connect(mapStateToProps, { getUserById, deleteUserById })(
+  UserInfo
+);

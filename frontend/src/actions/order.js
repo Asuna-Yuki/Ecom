@@ -70,8 +70,6 @@ export const getOrderByUserId = (orderId) => async (dispatch) => {
       type: GET_ORDER_BY_USER_SUCCESS,
       payload: res.data,
     });
-
-    console.log(res.data);
   } catch (err) {
     const errors = [err.message];
     console.log(errors);

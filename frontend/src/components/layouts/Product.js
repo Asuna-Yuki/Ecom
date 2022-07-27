@@ -35,6 +35,7 @@ const Product = ({
       // add product to cart with data.input
       singleProduct.quantity = parseInt(data.input);
       addItemInCart(singleProduct);
+      window.location.reload();
       setAlert("Item added to cart.", "success");
     } else {
       // not enough produck in stock
